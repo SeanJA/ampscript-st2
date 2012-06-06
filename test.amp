@@ -6,8 +6,8 @@ VAR @Variable2
 VAR @variable
 VAR @1NotAVarialbe
 VAR @ThisHowever_IsAvariable1
-SET @ThisHowever_IsAvariable1 = 'test'
-SET @ThisHowever_IsAvariable1 = "test"
+SET @ThisHowever_IsAvariable2 = 'test'
+SET @ThisHowever_IsAvariable3 = "test"
 ]%%
 
 ===== constant (should be hilighted anywhere in the file) =====
