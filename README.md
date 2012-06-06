@@ -12,4 +12,4 @@ TODO
 *  Figure out how to get it into the package control system
 *  Tag Based Syntax
 *  Auto completion of code
-*  
+*  Snippets
