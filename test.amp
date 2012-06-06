@@ -77,7 +77,8 @@ Set @zip = Zip
 Set @mempref = MemPref
 Set @plat = Plat
 /* 101 */  
-]%%%%= v(@fname) =%%, below are your account details  
+]%%
+%%= v(@fname) =%%, below are your account details  
 First Name:%%= v(@fname) =%%Last Name:%%= v(@lname) =%%  
 Preferred Name:%%= v(@prefname) =%% Address Address:%%= v(@address) =%%  
 Zip:%%= v(@zip) =%% Member Preferences Shopping Preference:%%= v(@mempref) =%%  
