@@ -10,4 +10,6 @@ TODO
 *  Syntax hilighting in quotes in html attributes
 *  Other language constructs (ie: for loops)
 *  Figure out how to get it into the package control system
-*  Tag Based Syntax 
+*  Tag Based Syntax
+*  Auto completion of code
+*  
