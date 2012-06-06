@@ -1,0 +1,62 @@
+{
+    "foldingStartMarker": "(<(?i:(head|table|div|style|script|ul|ol|form|dl))\\b.*?>|\\{)",
+    "foldingStopMarker": "(</(?i:(head|table|div|style|script|ul|ol|form|dl))>|\\})", 
+    "fileTypes": [
+        "amp", 
+        "ampscript"
+    ], 
+    "keyEquivalent": "^~A", 
+    "name": "HTML (AMPScript)", 
+    "scopeName": "text.html.ampscript", 
+    "patterns": [
+        {
+            "comment": "constants, these should always be hilighted no matter where they show up", 
+            "name": "constant.language.ampscript", 
+            "match": "%%(unsub_center_url|profile_center_url|emailaddr|First Name|Last Name|UID|emailname_|jobid|memberid|Member_Busname|Member_Addr|Member_City|Member_State|Member_PostalCode|ftaf_url)%%"
+        }, 
+        {
+            "begin": "%%\\[", 
+            "end": "\\]%%", 
+            "name": "source.ampscript.embedded.html", 
+            "endCaptures": {
+                "0": {
+                    "name": "punctuation.section.embedded.end.ampscript"
+                }
+            }, 
+            "beginCaptures": {
+                "0": {
+                    "name": "punctuation.section.embedded.begin.ampscript"
+                }
+            }, 
+            "patterns": [
+                {
+                    "include": "source.ampscript"
+                }
+            ]
+        }, 
+        {
+            "begin": "(%%=)", 
+            "end": "(=%%)", 
+            "name": "source.ampscript.embedded.html", 
+            "endCaptures": {
+                "0": {
+                    "name": "punctuation.section.embedded.end.ampscript"
+                }
+            }, 
+            "beginCaptures": {
+                "0": {
+                    "name": "punctuation.section.embedded.begin.ampscript"
+                }
+            }, 
+            "patterns": [
+                {
+                    "include": "source.ampscript"
+                }
+            ]
+        }, 
+        {
+            "include": "text.html.basic"
+        }
+    ],
+    "uuid": "442502cb-d2b7-4d42-9da1-be3a01beb335"
+}
