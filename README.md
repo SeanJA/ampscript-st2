@@ -11,3 +11,4 @@ TODO
 *  Other language constructs (ie: for loops)
 *  Figure out how to get it into the package control system
 *  Turn AMPScript (HTML).tmLanguage into a .JSON-tmLanguage file for consistency
+*  Tag Based Syntax 
