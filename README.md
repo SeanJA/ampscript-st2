@@ -12,3 +12,10 @@ TODO
 1.  Tag Based Syntax
 1.  Auto completion of code
 1.  Snippets
+
+Patches
+====
+
+Submit patches to the .JSON-tmLanguage files, not the xml files which are generated from them.
+
+Build with AAAPackageDev to test
