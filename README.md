@@ -12,6 +12,7 @@ TODO
 1.  Tag Based Syntax
 1.  Auto completion of code
 1.  Snippets
+1.  Non-greedy matching of the start / end tags
 
 Patches
 ====

@@ -50,9 +50,9 @@
             "name": "string.quoted.double.ampscript"
         },
         {
-            "begin": "%{2,}=",
+            "begin": "%+=",
             "comment": "inline code",
-            "end": "=%{2,}",
+            "end": "=%+",
             "patterns": [
                 {
                     "include": "source.ampscript"
@@ -60,9 +60,9 @@
             ]
         },
         {
-            "begin": "%{2,}\\[",
+            "begin": "%+\\[",
             "comment": "block of code",
-            "end": "\\]%{2,}",
+            "end": "\\]%+",
             "patterns": [
                 {
                     "include": "source.ampscript"
