@@ -18,4 +18,4 @@ Patches
 
 Submit patches to the .JSON-tmLanguage files, not the xml files which are generated from them.
 
-Build with AAAPackageDev to test
+Build with AAAPackageDev and test against `test.amp`
