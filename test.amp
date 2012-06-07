@@ -8,10 +8,14 @@ VAR @1NotAVarialbe
 VAR @ThisHowever_IsAvariable1
 SET @ThisHowever_IsAvariable2 = 'test'
 SET @ThisHowever_IsAvariable3 = "test"
+/* this should be hilighted */
+jobid
 ]%%
 
 ===== constant (should be hilighted anywhere in the file) =====
 %%jobid%%
+//this should be plain text though because it deoesn't have the "%%"s around it
+jobid
 
 ===== constant in quotes (should hilight the constant) =====
 
