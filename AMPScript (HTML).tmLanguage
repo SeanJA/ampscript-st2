@@ -88,6 +88,8 @@
 			</array>
 		</dict>
 		<dict>
+			<key>comment</key>
+			<string>include the html basic stuff</string>
 			<key>include</key>
 			<string>text.html.basic</string>
 		</dict>

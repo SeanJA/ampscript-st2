@@ -53,8 +53,9 @@
                     "include": "source.ampscript"
                 }
             ]
-        }, 
+        },
         {
+            "comment":"include the html basic stuff",
             "include": "text.html.basic"
         }
     ],
