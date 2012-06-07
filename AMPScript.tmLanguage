@@ -87,11 +87,11 @@
 		</dict>
 		<dict>
 			<key>begin</key>
-			<string>%+=</string>
+			<string>%+?=</string>
 			<key>comment</key>
 			<string>inline code</string>
 			<key>end</key>
-			<string>=%+</string>
+			<string>=%+?</string>
 			<key>patterns</key>
 			<array>
 				<dict>
@@ -102,11 +102,11 @@
 		</dict>
 		<dict>
 			<key>begin</key>
-			<string>%+\[</string>
+			<string>%+?\[</string>
 			<key>comment</key>
 			<string>block of code</string>
 			<key>end</key>
-			<string>\]%+</string>
+			<string>\]%+?</string>
 			<key>patterns</key>
 			<array>
 				<dict>

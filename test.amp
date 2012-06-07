@@ -77,7 +77,7 @@ Set @zip = Zip
 Set @mempref = MemPref
 Set @plat = Plat
 /* 101 */  
-]%% %%= v(@fname) =%%, below are your account details  
+]%%%%= v(@fname) =%%, below are your account details  
 First Name:%%= v(@fname) =%%Last Name:%%= v(@lname) =%%  
 Preferred Name:%%= v(@prefname) =%% Address Address:%%= v(@address) =%%  
 Zip:%%= v(@zip) =%% Member Preferences Shopping Preference:%%= v(@mempref) =%%  
@@ -99,7 +99,7 @@ Set @state = Lookup("ShipTimes","state","zip",@zip)
 Set @mempref = MemPref  
 Set @plat = Plat  
   
-/* 201 */ ]%% %%[ if not empty(@prefname) then ]%% %%= v(@prefname) =%% %%[ else ]%% %%= v(@fname) =%% %%[ endif  
+/* 201 */ ]%% %%[ if not empty(@prefname) then ]%% %%= v(@prefname) =%% %%[ else ]%% %%= v(@fname) =%%%%[ endif  
  ]%%, below are your account detailsName   
   
 First Name:%%= v(@fname) =%%Last Name:%%= v(@lname) =%%  
@@ -117,7 +117,7 @@ Shopping Preference:%%= v(@mempref) =%%Platinum Member:%%[ if @plat == "N" then 
   
 %%= RedirectTo(Concat('http://example.com?s=',_subscriberkey)) =%%   
   
-Sign-Up %%[ else ]%% %%= v(@plat) =%% %%[ endif ]%%  
+Sign-Up %%[ else ]%%%%= v(@plat) =%%%%[ endif ]%%  
 
 ===== ampscript 301 example http://wiki.memberlandingpages.com/010_ExactTarget/020_Content/AMPscript/Getting_Started_With_AMPscript/AMPscript_301 =====
 
@@ -136,7 +136,7 @@ Set @plat = Plat
 
 /* 301 */ ]%%
   
-<div style="border-bottom: 1px solid #EEE; padding: 15px 0;"><strong>%%[ if not empty(@prefname) then ]%% %%= v(@prefname) =%% %%[ else ]%% %%= v(@fname) =%% %%[ endif ]%%</strong>, below are your account details</div>  
+<div style="border-bottom: 1px solid #EEE; padding: 15px 0;"><strong>%%[ if not empty(@prefname) then ]%%%%= v(@prefname) =%%%%[ else ]%%%%= v(@fname) =%%%%[ endif ]%%</strong>, below are your account details</div>  
 <div style="border-bottom: 1px solid #EEE; padding: 15px 0;">  
 <table width="100%" cellpadding="0" cellspacing="0" border="0">  
     <tr>  
@@ -215,7 +215,7 @@ We couldn't find a shipping preference. Please <a href="%%= RedirectTo(Concat('h
     </tr>  
     <tr>  
         <td height="30"><font size="2">Shopping Preference: <strong style="color: #000;">%%= v(@mempref) =%%</strong></font></td>  
-        <td height="30"><font size="2">Platinum Member: <strong style="color: #000;">%%[ if @plat == "N" then ]%%<a href="%%= RedirectTo(Concat('http://example.com?s=',_subscriberkey)) =%%" alias="Platinum Sign-Up">Sign-Up</a>%%[ else ]%% %%= v(@plat) =%% %%[ endif ]%%</strong></font></td>  
+        <td height="30"><font size="2">Platinum Member: <strong style="color: #000;">%%[ if @plat == "N" then ]%%<a href="%%= RedirectTo(Concat('http://example.com?s=',_subscriberkey)) =%%" alias="Platinum Sign-Up">Sign-Up</a>%%[ else ]%%%%= v(@plat) =%%%%[ endif ]%%</strong></font></td>  
     </tr>  
 </table>  
 </div>
@@ -237,7 +237,7 @@ Set @zip = Zip
 Set @mempref = MemPref  
 Set @plat = Plat  
   
-/* 401 */ ]%% %%[ if not empty(@prefname) then ]%% %%= v(@prefname) =%% %%[ else ]%% %%= v(@fname) =%% %%[ endif ]%%, below are your account detailsName   
+/* 401 */ ]%%%%[ if not empty(@prefname) then ]%%%%= v(@prefname) =%%%%[ else ]%%%%= v(@fname) =%%%%[ endif ]%%, below are your account detailsName   
 First Name:%%= v(@fname) =%%Last Name:%%= v(@lname) =%%  
   
 %%[ if not Empty(@prefname) then ]%%Preferred Name:%%= v(@prefname) =%%  
@@ -298,7 +298,7 @@ Shopping Preference:%%= v(@mempref) =%%Platinum Member:%%[ if @plat == "N" then 
   
 %%= RedirectTo(Concat('http://example.com?s=',_subscriberkey)) =%%   
   
-Sign-Up %%[ else ]%% %%= v(@plat) =%% %%[ endif ]%%  
+Sign-Up %%[ else ]%%%%= v(@plat) =%%%%[ endif ]%%  
   
   
 %%[ /* Declare more variables that will be used specifically for our products */  
