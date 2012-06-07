@@ -4,10 +4,11 @@
 VAR @VARIABLE1
 VAR @Variable2
 VAR @variable
+/* this should not be hilighted at all */
 VAR @1NotAVarialbe
 VAR @ThisHowever_IsAvariable1
 SET @ThisHowever_IsAvariable2 = 'test'
-SET @ThisHowever_IsAvariable3 = "test"
+SET @ThisHowever_IsAvariable3 = 1234515143214312341234
 /* this should be hilighted */
 jobid
 ]%%
@@ -50,11 +51,11 @@ some text before %%=ContentAreaByName("my contents\some sub file")=%% some text 
 %%[
 
 FOR @j = 1 to @numofProperties DO  
-      
-    SET @currentProp = Row(@properties, @j)  
-    Set @Field1= FIELD(@currentProp ,"Name")   
-    Set @Field2= FIELD(@currentProp ,"Value")   
-
+    IF @j >= 1 AND @numofProperties == 16 THEN
+        SET @currentProp = Row(@properties, @j)  
+        Set @Field1= FIELD(@currentProp ,"Name")   
+        Set @Field2= FIELD(@currentProp ,"Value")   
+    ENDIF
 ]%%
 
 

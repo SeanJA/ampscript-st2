@@ -21,7 +21,7 @@
 			<key>comment</key>
 			<string>Numbers!</string>
 			<key>match</key>
-			<string>(\d+)</string>
+			<string>\b(\d+)\b</string>
 			<key>name</key>
 			<string>constant.numeric.ampscript</string>
 		</dict>
@@ -29,7 +29,7 @@
 			<key>comment</key>
 			<string>constants, or as they call them... 'Personalization Strings' http://wiki.memberlandingpages.com/010_ExactTarget/020_Content/Personalization_Strings</string>
 			<key>match</key>
-			<string>(xtmonth|xtmonthnumeric|xtday|xtdayofweek|xtyear|xtshortdate|xtlongdate|linkname|emailname_|_messagecontext|_MessageTypePreference|_replycontent|_IsTestSend|jobid|emailaddr|firstname|lastname|comment_|subscriberid|_subscriberkey|listid|list_|listsubid|messagetypepreference|mobile_number|short_code|_listname|_emailid|_JobSubscriberBatchID|_DataSourceName|replyname|replyemailaddress|memberid|member_busname|member_addr|member_city|member_state|member_postalcode|member_country|MOBILE_NUMBER|SHORT_CODE|AdditionalInfo_|__AdditionalEmailAttribute1|__AdditionalEmailAttribute2|__AdditionalEmailAttribute3|__AdditionalEmailAttribute4|__AdditionalEmailAttribute5)</string>
+			<string>\b(xtmonth|xtmonthnumeric|xtday|xtdayofweek|xtyear|xtshortdate|xtlongdate|linkname|emailname_|_messagecontext|_MessageTypePreference|_replycontent|_IsTestSend|jobid|emailaddr|firstname|lastname|comment_|subscriberid|_subscriberkey|listid|list_|listsubid|messagetypepreference|mobile_number|short_code|_listname|_emailid|_JobSubscriberBatchID|_DataSourceName|replyname|replyemailaddress|memberid|member_busname|member_addr|member_city|member_state|member_postalcode|member_country|MOBILE_NUMBER|SHORT_CODE|AdditionalInfo_|__AdditionalEmailAttribute1|__AdditionalEmailAttribute2|__AdditionalEmailAttribute3|__AdditionalEmailAttribute4|__AdditionalEmailAttribute5)\b</string>
 			<key>name</key>
 			<string>constant.language.ampscript</string>
 		</dict>
@@ -145,7 +145,7 @@
 			<key>comment</key>
 			<string>storage</string>
 			<key>match</key>
-			<string>(?i:VAR|SET)</string>
+			<string>\b(?i:VAR|SET)\b</string>
 			<key>name</key>
 			<string>storage.type.ampscript</string>
 		</dict>
@@ -153,7 +153,7 @@
 			<key>comment</key>
 			<string>controls</string>
 			<key>match</key>
-			<string>(?i:FOR|DO|DOWNTO|TO|IF|ELSE|ELSEIF|ENDIF|THEN|NEXT)</string>
+			<string>\b(?i:FOR|DO|DOWNTO|TO|IF|ELSE|ELSEIF|ENDIF|THEN|NEXT)\b</string>
 			<key>name</key>
 			<string>keyword.control.ampscript</string>
 		</dict>
@@ -161,7 +161,7 @@
 			<key>comment</key>
 			<string>operators</string>
 			<key>match</key>
-			<string>(?i:=|\,|==|==|!=|&gt;|&lt;|&gt;=|&lt;=|AND|OR|NOT)</string>
+			<string>(?i:=|\,|==|==|!=|&gt;|&lt;|&gt;=|&lt;=|\b(AND|OR|NOT)\b)</string>
 			<key>name</key>
 			<string>keyword.operator.ampscript</string>
 		</dict>
