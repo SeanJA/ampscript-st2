@@ -27,7 +27,6 @@ INSTALL
 TODO
 ====
 1.  Syntax hilighting in quotes in html attributes
-1.  Figure out how to get it into the package control system
 1.  Tag Based Syntax
 1.  Auto completion of code
 1.  Snippets
