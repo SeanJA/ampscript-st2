@@ -1,7 +1,7 @@
 AMPScript
 ====
 
-It is an exact target creation, you can find the docs here: hhttp://wiki.memberlandingpages.com/AMPscript/AMPscript_Syntax_Guide
+It is an exact target creation, you can find the docs here: http://wiki.memberlandingpages.com/AMPscript/AMPscript_Syntax_Guide
 
 I have some of the syntax hilighting working (code blocks, inline code, "constants"...).
 
