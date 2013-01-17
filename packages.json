@@ -2,7 +2,7 @@
 	"schema_version": "1.2",
 	"packages": [
 		{
-			"name": "AmpScript Hilighter",
+			"name": "AmpScript Highlighter",
 			"description": "Hilights ampscript (which is an exact target construct)",
 			"author": "seanja",
 			"homepage": "https://github.com/SeanJA/ampscript-st2",
