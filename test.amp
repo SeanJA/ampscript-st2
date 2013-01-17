@@ -1,24 +1,24 @@
-===== block test (fully hilighted) =====
+===== block test (fully highlighted) =====
 %%[
 /** this is a comment! **/
 VAR @VARIABLE1
 VAR @Variable2
 VAR @variable
-/* this should not be hilighted at all */
+/* this should not be highlighted at all */
 VAR @1NotAVarialbe
 VAR @ThisHowever_IsAvariable1
 SET @ThisHowever_IsAvariable2 = 'test'
 SET @ThisHowever_IsAvariable3 = 1234515143214312341234
-/* this should be hilighted */
+/* this should be highlighted */
 jobid
 ]%%
 
-===== constant (should be hilighted anywhere in the file) =====
+===== constant (should be highlighted anywhere in the file) =====
 %%jobid%%
 //this should be plain text though because it deoesn't have the "%%"s around it
 jobid
 
-===== constant in quotes (should hilight the constant) =====
+===== constant in quotes (should highlight the constant) =====
 
 <div var="%%jobid%%"></div>
 <div var='%%jobid%%'></div>
@@ -26,24 +26,24 @@ jobid
 <div var='%%jobid%% then some text'></div>
 <div var='some text then %%jobid%% then some text'></div>
 
-===== function in quotes (should hilight the function and contents) =====
+===== function in quotes (should highlight the function and contents) =====
 
 <img src='%%=v(@ADURL1)=%%' />
 <img src='some text then %%=v(@IMGURL1)=%%' border="0" alt="Ad 1" />
 <img src='%%=v(@IMGURL1)=%% then some text' border="0" alt="Ad 1" />
 <img src='some text then %%=v(@IMGURL1)=%% then some text' border="0" alt="Ad 1" />
 
-===== inline test (should hilight betweet the "%%"s) =====
+===== inline test (should highlight betweet the "%%"s) =====
 
 %%=ContentAreaByName("my contents\some sub file")=%%
 some text before %%=ContentAreaByName("my contents\some sub file")=%%
 %%=ContentAreaByName("my contents\some sub file")=%% some text afterwards
 some text before %%=ContentAreaByName("my contents\some sub file")=%% some text afterwards
 
-===== function inside a function (both functions should be hilighted) =====
+===== function inside a function (both functions should be highlighted) =====
 %%=Format(Now(), "ddd, MMM dd, yyyy")=%%
 
-===== inside some html (should be hilighted between the "%%"s) =====
+===== inside some html (should be highlighted between the "%%"s) =====
 <div>%%=ContentAreaByName("my contents\some sub file")=%%</div>
 
 
