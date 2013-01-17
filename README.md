@@ -15,7 +15,7 @@ FEATURES
 ====
 *  Highlights of all the functions in the wiki
 *  Highlights all the personalization strings
-*  To see what else works you can look in the `test.amp` file for samples from exact target
+*  To see what else works you can look in the `test.amp` file inside the `AmpScript Highlighter` package folder for samples from exact target
 *  Some snippets for completing ampscript blocks `%%[ ]%%` is really annoying to type when you have bracket complete on
 
 NOTES
