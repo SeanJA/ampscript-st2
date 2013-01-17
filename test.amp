@@ -11,6 +11,7 @@ SET @ThisHowever_IsAvariable2 = 'test'
 SET @ThisHowever_IsAvariable3 = 1234515143214312341234
 /* this should be highlighted */
 jobid
+
 ]%%
 
 ===== constant (should be highlighted anywhere in the file) =====
@@ -374,6 +375,78 @@ endif ]%%Total Purchases:$%%= v(@totalPurchases) =%%
   
 %%[ endif ]%%
 
+===== personalization strings http://wiki.memberlandingpages.com/010_ExactTarget/020_Content/AMPscript/Using_Personalization_Strings_with_AMPscript  =====
+%%[
+
+additionalinfo_
+comment_
+comment
+emailaddr
+_EmailID
+emailname_
+firstname_ 
+firstname
+ftaf_url
+fullname_
+fullname
+_ImpressionRegionID
+_ImpressionRegionName
+_IsTestSend
+jobid
+_JobSubscriberBatchID
+lastname_
+lastname
+list_
+listid
+_ListName
+listsubid
+member_addr
+member_busname
+member_city
+member_country
+memberid
+member_postalcode
+member_state
+_messagecontext
+_messagetypepreference
+_replycontent
+profile_center_url
+replyname
+replyemailaddress
+subscriberid
+_subscriberkey
+subscription_center_url
+unsub_center_url
+xtday
+xtdayofweek
+xtlongdate
+xtmonth
+xtmonthnumeric
+xtshortdate
+xtyear
+view_email_url
+_CarrierID
+_Channel
+_City
+_ContactID
+_CountryCode
+_CreatedBy
+_CreatedDate
+_FirstName
+_IsHonorDST
+_LastName
+_MobileNumber
+_ModifiedBy
+_ModifiedDate
+_Priority
+_Source
+_SourceObjectID
+_State
+_Status
+_UTCOffset
+_ZipCode
+
+]%%
 
 ===== function list http://wiki.memberlandingpages.com/010_ExactTarget/020_Content/AMPscript/AMPscript_Functions  =====
 %%[
@@ -508,3 +581,4 @@ WAT (S1, S2)
 WATP (S1, S2)
 WrapLongURL(S1)
 ]%%
+

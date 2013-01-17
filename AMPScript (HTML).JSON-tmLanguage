@@ -5,14 +5,14 @@
         "amp", 
         "ampscript"
     ], 
-    "keyEquivalent": "^~A", 
+    "keyEquivalent": "^~A",
     "name": "HTML (AMPScript)", 
     "scopeName": "text.html.ampscript", 
     "patterns": [
         {
             "comment": "constants, these should always be hilighted no matter where they show up", 
             "name": "constant.language.ampscript", 
-            "match": "%%(xtmonth|xtmonthnumeric|xtday|xtdayofweek|xtyear|xtshortdate|xtlongdate|linkname|emailname_|_messagecontext|_MessageTypePreference|_replycontent|_IsTestSend|jobid|emailaddr|firstname|lastname|comment_|subscriberid|_subscriberkey|listid|list_|listsubid|messagetypepreference|mobile_number|short_code|_listname|_emailid|_JobSubscriberBatchID|_DataSourceName|replyname|replyemailaddress|memberid|member_busname|member_addr|member_city|member_state|member_postalcode|member_country|MOBILE_NUMBER|SHORT_CODE|AdditionalInfo_|__AdditionalEmailAttribute1|__AdditionalEmailAttribute2|__AdditionalEmailAttribute3|__AdditionalEmailAttribute4|__AdditionalEmailAttribute5)%%"
+            "match": "%%(additionalinfo_|comment_|comment|emailaddr|_EmailID|emailname_|firstname_|firstname|ftaf_url|fullname_|fullname|_ImpressionRegionID|_ImpressionRegionName|_IsTestSend|jobid|_JobSubscriberBatchID|lastname_|lastname|list_|listid|_ListName|listsubid|member_addr|member_busname|member_city|member_country|memberid|member_postalcode|member_state|_messagecontext|_messagetypepreference|_replycontent|profile_center_url|replyname|replyemailaddress|subscriberid|_subscriberkey|subscription_center_url|unsub_center_url|xtday|xtdayofweek|xtlongdate|xtmonth|xtmonthnumeric|xtshortdate|xtyear|view_email_url|_CarrierID|_Channel|_City|_ContactID|_CountryCode|_CreatedBy|_CreatedDate|_FirstName|_IsHonorDST|_LastName|_MobileNumber|_ModifiedBy|_ModifiedDate|_Priority|_Source|_SourceObjectID|_State|_Status|_UTCOffset|_ZipCode)%%"
         }, 
         {
             "begin": "%{1,2}\\[", 
