@@ -1,46 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE plist PUBLIC "-//Apple Computer//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
 	<key>fileTypes</key>
 	<array>
+		<string>amp</string>
 	</array>
+	<key>keyEquivalent</key>
+	<string>@A</string>
 	<key>name</key>
-	<string>ampscript</string>
+	<string>AMPscript</string>
 	<key>patterns</key>
 	<array>
-		<dict>
-			<key>comment</key>
-			<string>Variables like @PARAM1, @TM_SELECTION...</string>
-			<key>match</key>
-			<string>\@[a-zA-Z][A-Za-z0-9_]{0,}</string>
-			<key>name</key>
-			<string>keyword.source.ampscript</string>
-		</dict>
-		<dict>
-			<key>comment</key>
-			<string>Numbers!</string>
-			<key>match</key>
-			<string>\b(\d+)\b</string>
-			<key>name</key>
-			<string>constant.numeric.ampscript</string>
-		</dict>
-		<dict>
-			<key>comment</key>
-			<string>constants, or as they call them... 'Personalization Strings' http://wiki.memberlandingpages.com/010_ExactTarget/020_Content/Personalization_Strings</string>
-			<key>match</key>
-			<string>\b(additionalinfo_|comment_|comment|emailaddr|_EmailID|emailname_|firstname_|firstname|ftaf_url|fullname_|fullname|_ImpressionRegionID|_ImpressionRegionName|_IsTestSend|jobid|_JobSubscriberBatchID|lastname_|lastname|list_|listid|_ListName|listsubid|member_addr|member_busname|member_city|member_country|memberid|member_postalcode|member_state|_messagecontext|_messagetypepreference|_replycontent|profile_center_url|replyname|replyemailaddress|subscriberid|_subscriberkey|subscription_center_url|unsub_center_url|xtday|xtdayofweek|xtlongdate|xtmonth|xtmonthnumeric|xtshortdate|xtyear|view_email_url|_CarrierID|_Channel|_City|_ContactID|_CountryCode|_CreatedBy|_CreatedDate|_FirstName|_IsHonorDST|_LastName|_MobileNumber|_ModifiedBy|_ModifiedDate|_Priority|_Source|_SourceObjectID|_State|_Status|_UTCOffset|_ZipCode)\b</string>
-			<key>name</key>
-			<string>constant.language.ampscript</string>
-		</dict>
-		<dict>
-			<key>comment</key>
-			<string>Functions that are part of ampscript</string>
-			<key>match</key>
-			<string>\b(?i:Add|AddMscrmListMember|AddObjectArrayItem|AttachFile|AttributeValue|AuthenticatedEmployeeID|AuthenticatedEmployeeNotificationAddress|AuthenticatedEmployeeUserName|AuthenticatedEnterpriseID|AuthenticatedMemberID|AuthenticatedMemberName|BarCodeURL|Base64Decode|Base64Encode|BeginImpressionRegion|BuildOptionList|BuildRowSetFromString|BuildRowSetFromXML|Char|ClaimRow|ClaimRowValue|Concat|ContentArea|ContentAreaByName|CreateMscrmRecord|CreateObject|CreateSalesforceObject|DateAdd|DateDiff|DateParse|DatePart|DecryptSymmetric|DeleteData|DeleteDE|DescribeMscrmEntities|DescribeMscrmEntityAttributes|DirectTwitterMessage|Divide|Domain|Empty|EncryptSymmetric|EndImpressionRegion|ExecuteFilter|ExecuteFilterOrderedRows|Field|Format|GetPortfolioItem|GetPublishedSocialContent|GetSocialPublishURL|GetSocialPublishURLByName|GUID|HTTPGet|HTTPRequestHeader|IIf|Image|IndexOf|InsertData|InsertDE|InvokeCreate|InvokeDelete|InvokeExecute|InvokePerform|InvokeRetrieve|InvokeUpdate|IsEmailAddress|IsNull|IsNullDefault|IsPhoneNumber|Length|LiveContentMicrositeURL|LocalDateToSystemDate|LongSFID|Lookup|LookupOrderedRows|LookupOrderedRowsCS|LookupRows|LookupRowsCS|Lowercase|MD5|Mod|Multiply|Now|Output|OutputLine|ProperCase|QueryParameter|RaiseError|Random|Redirect|RedirectTo|RegExMatch|Replace|ReplaceList|RequestParameter|RetrieveMscrmRecords|RetrieveMscrmRecordsFetchXML|RetrieveSalesforceJobSources|RetrieveSalesforceObjects|Row|RowCount|SetObjectProperty|SetSmsConversationNextKeyword|SetStateMscrmRecord|SHA256|SHA512|StringToDate|StringToHex|Substring|Subtract|SystemDateToLocalDate|TransformXML|TreatAsContent|TreatAsContentArea|Trim|UpdateData|UpdateDE|UpdateMscrmRecords|UpdateSingleSalesforceObject|UpdateTwitterStatus|UpdateTwitterStatusByJob|Uppercase|UpsertContacts|UpsertData|UpsertDE|UpsertMscrmRecord|URLEncode|V|WAT|WATP|WrapLongURL)\b</string>
-			<key>name</key>
-			<string>support.function.ampscript</string>
-		</dict>
 		<dict>
 			<key>begin</key>
 			<string>/\*</string>
@@ -49,15 +20,114 @@
 				<key>0</key>
 				<dict>
 					<key>name</key>
-					<string>punctuation.definition.comment.ampscript</string>
+					<string>punctuation.definition.comment.AMP</string>
 				</dict>
 			</dict>
-			<key>comment</key>
-			<string>comments!</string>
 			<key>end</key>
 			<string>\*/</string>
 			<key>name</key>
-			<string>comment.block.ampscript</string>
+			<string>comment.block.AMP</string>
+		</dict>
+		<dict>
+			<key>captures</key>
+			<dict>
+				<key>1</key>
+				<dict>
+					<key>name</key>
+					<string>punctuation.definition.comment.AMP</string>
+				</dict>
+			</dict>
+			<key>match</key>
+			<string>(//).*$\n?</string>
+			<key>name</key>
+			<string>comment.line.double-slash.AMP</string>
+		</dict>
+		<dict>
+			<key>match</key>
+			<string>\b((0(x|X)[0-9a-fA-F]+)|([0-9]+(\.[0-9]+)?))\b</string>
+			<key>name</key>
+			<string>constant.numeric.AMP</string>
+		</dict>
+		<dict>
+			<key>match</key>
+			<string>((?i:true)\b)</string>
+			<key>name</key>
+			<string>constant.language.boolean.true.AMP</string>
+		</dict>
+		<dict>
+			<key>match</key>
+			<string>((?i:false)\b)</string>
+			<key>name</key>
+			<string>constant.language.boolean.false.AMP</string>
+		</dict>
+		<dict>
+			<key>match</key>
+			<string>((?i:null)\b)</string>
+			<key>name</key>
+			<string>constant.language.null.AMP</string>
+		</dict>
+		<dict>
+			<key>match</key>
+			<string>((?i:do|else|elseif|for|if|endif|next|then|@@ContentArea)\b)</string>
+			<key>name</key>
+			<string>keyword.control.AMP</string>
+		</dict>
+		<dict>
+			<key>match</key>
+			<string>((?i:var|set)\b)</string>
+			<key>name</key>
+			<string>storage.type.AMP</string>
+		</dict>
+		<dict>
+			<key>match</key>
+			<string>((?i:lookup|lookuporderedrows|lookuprows|createobject|add|addobjectarrayitem|attachfile|attributevalue|beginimpressionregion|buildoptionlist|buildrowsetfromstring|buildrowsetfromxml|concat|contentarea|contentareabyname|createsalesforceobject|dateadd|datediff|datepart|deletedata|deletede|divide|domain|empty|endimpressionregion|field|format|getsocialpublishurl|httprequestheader|httprequestheader|image|indexof|insertdata|insertde|invokecreate|invokedelete|invokeperform|invokeupdate|isemailaddress|isnull|isphonenumber|length|livecontentmicrositeurl|lowercase|mod|multiply|now|output|outputline|propcap|propercase|queryparameter|raiseerror|random|redirect|redirectto|replace|replacelist|requestparameter|retrievesalesforceobjects|row|rowcount|setobjectproperty|setsmsconversationnextkeyword|substring|subtract|treatascontent|trim|updatedata|updatede|updatesinglesalesforceobject|uppercaseupsertdata|upsertde|urlencode|v|watp|wraplongurl|updatemscrmrecords|upsertmscrmrecord|createmscrmrecord|retrievemscrmrecords|retrievemscrmrecordsfetchxml|describemscrmentities|describemscrmentityattributes|addmscrmlistmember|setstatemscrmrecord|retrievesalesforcejobsources|longsfid|updatemscrmrecord|getportfolioitem|getpublishedsocialcontent|lookuporderedrowscs|lookuprowscs|transformxml|systemdatetolocaldate|localdatetosystemdate|stringtodate|stringtohex|md5|dateparse|directtwittermessage|updatetwitterstatusbyjob|updatetwitterstatus|guid|authenticatedemployeenotificationaddress|authenticatedemployeeusername|authenticatedemployeeid|authenticatedmembername|authenticatedmemberid|authenticatedenterpriseid|executefilterorderedrows|executefilter|httpget)\b)(?=\()</string>
+			<key>name</key>
+			<string>support.function.AMP</string>
+		</dict>
+		<dict>
+			<key>match</key>
+			<string>!|%|&amp;|\*|\-\-|\-|\+\+|\+|~|===|==|=|!=|!==|&lt;=|&gt;=|&lt;&lt;=|&gt;&gt;=|&gt;&gt;&gt;=|&lt;&gt;|&lt;|&gt;|!|&amp;&amp;|\|\||\?\:|\*=|(?&lt;!\()/=|%=|\+=|\-=|&amp;=|\^=|\b(and|or|not)\b</string>
+			<key>name</key>
+			<string>keyword.operator.AMP</string>
+		</dict>
+		<dict>
+			<key>match</key>
+			<string>[\%\%\[]|[\]\%\%]|\%\%\=|\=\%\%</string>
+			<key>name</key>
+			<string>meta.brace.square.AMP</string>
+		</dict>
+		<dict>
+			<key>begin</key>
+			<string>'</string>
+			<key>beginCaptures</key>
+			<dict>
+				<key>0</key>
+				<dict>
+					<key>name</key>
+					<string>punctuation.definition.string.begin.AMP</string>
+				</dict>
+			</dict>
+			<key>end</key>
+			<string>'</string>
+			<key>endCaptures</key>
+			<dict>
+				<key>0</key>
+				<dict>
+					<key>name</key>
+					<string>punctuation.definition.string.end.AMP</string>
+				</dict>
+			</dict>
+			<key>name</key>
+			<string>string.quoted.single.AMP</string>
+			<key>patterns</key>
+			<array>
+				<dict>
+					<key>match</key>
+					<string>\\(x\h{2}|[0-2][0-7]{,2}|3[0-6][0-7]?|37[0-7]?|[4-7][0-7]?|.)</string>
+					<key>name</key>
+					<string>constant.character.escape.js</string>
+				</dict>
+			</array>
 		</dict>
 		<dict>
 			<key>begin</key>
@@ -67,11 +137,9 @@
 				<key>0</key>
 				<dict>
 					<key>name</key>
-					<string>punctuation.definition.string.begin.ampscript</string>
+					<string>punctuation.definition.string.begin.AMP</string>
 				</dict>
 			</dict>
-			<key>comment</key>
-			<string>quotation marks</string>
 			<key>end</key>
 			<string>"</string>
 			<key>endCaptures</key>
@@ -79,39 +147,20 @@
 				<key>0</key>
 				<dict>
 					<key>name</key>
-					<string>punctuation.definition.string.end.ampscript</string>
+					<string>punctuation.definition.string.end.AMP</string>
 				</dict>
 			</dict>
 			<key>name</key>
-			<string>string.quoted.double.ampscript</string>
-		</dict>
-		<dict>
-			<key>begin</key>
-			<string>%{1,2}=</string>
-			<key>comment</key>
-			<string>inline code</string>
-			<key>end</key>
-			<string>=%{1,2}</string>
+			<string>string.quoted.double.AMP</string>
 			<key>patterns</key>
 			<array>
 				<dict>
 					<key>include</key>
-					<string>source.ampscript</string>
+					<string>#embedded-code</string>
 				</dict>
-			</array>
-		</dict>
-		<dict>
-			<key>begin</key>
-			<string>%{1,2}\[</string>
-			<key>comment</key>
-			<string>block of code</string>
-			<key>end</key>
-			<string>\]%{1,2}</string>
-			<key>patterns</key>
-			<array>
 				<dict>
 					<key>include</key>
-					<string>source.ampscript</string>
+					<string>#entities</string>
 				</dict>
 			</array>
 		</dict>
@@ -123,11 +172,9 @@
 				<key>0</key>
 				<dict>
 					<key>name</key>
-					<string>punctuation.definition.string.begin.ampscript</string>
+					<string>punctuation.definition.string.begin.AMP</string>
 				</dict>
 			</dict>
-			<key>comment</key>
-			<string>quotation marks</string>
 			<key>end</key>
 			<string>'</string>
 			<key>endCaptures</key>
@@ -135,40 +182,72 @@
 				<key>0</key>
 				<dict>
 					<key>name</key>
-					<string>punctuation.definition.string.end.ampscript</string>
+					<string>punctuation.definition.string.end.AMP</string>
 				</dict>
 			</dict>
 			<key>name</key>
-			<string>string.quoted.single.ampscript</string>
+			<string>string.quoted.single.AMP</string>
+			<key>patterns</key>
+			<array>
+				<dict>
+					<key>include</key>
+					<string>#embedded-code</string>
+				</dict>
+				<dict>
+					<key>include</key>
+					<string>#entities</string>
+				</dict>
+			</array>
 		</dict>
 		<dict>
-			<key>comment</key>
-			<string>storage</string>
-			<key>match</key>
-			<string>\b(?i:VAR|SET)\b</string>
+			<key>begin</key>
+			<string>"</string>
+			<key>beginCaptures</key>
+			<dict>
+				<key>0</key>
+				<dict>
+					<key>name</key>
+					<string>punctuation.definition.string.begin.AMP</string>
+				</dict>
+			</dict>
+			<key>end</key>
+			<string>"</string>
+			<key>endCaptures</key>
+			<dict>
+				<key>0</key>
+				<dict>
+					<key>name</key>
+					<string>punctuation.definition.string.end.AMP</string>
+				</dict>
+			</dict>
 			<key>name</key>
-			<string>storage.type.ampscript</string>
+			<string>string.quoted.double.AMP</string>
+			<key>patterns</key>
+			<array>
+				<dict>
+					<key>match</key>
+					<string>\\(x\h{2}|[0-2][0-7]{,2}|3[0-6][0-7]|37[0-7]?|[4-7][0-7]?|.)</string>
+					<key>name</key>
+					<string>constant.character.escape.AMP</string>
+				</dict>
+			</array>
 		</dict>
 		<dict>
-			<key>comment</key>
-			<string>controls</string>
 			<key>match</key>
-			<string>\b(?i:FOR|DO|DOWNTO|TO|IF|ELSE|ELSEIF|ENDIF|THEN|NEXT)\b</string>
+			<string>\@[a-zA-Z0-9_]+</string>
 			<key>name</key>
-			<string>keyword.control.ampscript</string>
+			<string>variable.language.AMP</string>
 		</dict>
 		<dict>
-			<key>comment</key>
-			<string>operators</string>
 			<key>match</key>
-			<string>(?i:=|\,|==|==|!=|&gt;|&lt;|&gt;=|&lt;=|\b(AND|OR|NOT)\b)</string>
+			<string>\b(additionalinfo_|comment_|comment|emailaddr|_EmailID|emailname_|firstname_|firstname|ftaf_url|fullname_|fullname|_ImpressionRegionID|_ImpressionRegionName|_IsTestSend|jobid|_JobSubscriberBatchID|list_|listid|_ListName|listsubid|member_addr|member_busname|member_city|member_country|memberid|member_postalcode|member_state|_messagecontext|_messagetypepreference|_replycontent|profile_center_url|replyname|replyemailaddress|subscriberid|_subscriberkey|subscription_center_url|unsub_center_url|xtday|xtdayofweek|xtlongdate|xtmonth|xtmonthnumeric|xtshortdate|xtyear|view_email_url)\b</string>
 			<key>name</key>
-			<string>keyword.operator.ampscript</string>
+			<string>support.class.AMP</string>
 		</dict>
 	</array>
 	<key>scopeName</key>
-	<string>source.ampscript</string>
+	<string>source.AMP</string>
 	<key>uuid</key>
-	<string>eb12c64c-4f03-4209-9afe-31b3f450570d</string>
+	<string>13EDD11E-60F2-4E9B-A149-73D6043A562C</string>
 </dict>
 </plist>

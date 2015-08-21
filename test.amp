@@ -51,29 +51,29 @@ some text before %%=ContentAreaByName("my contents\some sub file")=%% some text 
 ===== for loop =====
 %%[
 
-FOR @j = 1 to @numofProperties DO  
+FOR @j = 1 to @numofProperties DO
     IF @j >= 1 AND @numofProperties == 16 THEN
-        SET @currentProp = Row(@properties, @j)  
-        Set @Field1= FIELD(@currentProp ,"Name")   
-        Set @Field2= FIELD(@currentProp ,"Value")   
+        SET @currentProp = Row(@properties, @j)
+        Set @Field1= FIELD(@currentProp ,"Name")
+        Set @Field2= FIELD(@currentProp ,"Value")
     ENDIF
 ]%%
 
 
 ===== if elseif else endif =====
 
-%%[ IF @var1 >= @var2 THEN ]%%  
-    [wrapped script or email content]  
-%%[ ELSEIF @var1 <= @var3 THEN ]%%  
-    [wrapped script or email content]  
-%%[ ELSE ]%%  
-    [wrapped script or email content]  
-%%[ ENDIF ]%%  
+%%[ IF @var1 >= @var2 THEN ]%%
+    [wrapped script or email content]
+%%[ ELSEIF @var1 <= @var3 THEN ]%%
+    [wrapped script or email content]
+%%[ ELSE ]%%
+    [wrapped script or email content]
+%%[ ENDIF ]%%
 
 
 ===== ampscript 101 example: http://wiki.memberlandingpages.com/010_ExactTarget/020_Content/AMPscript/Getting_Started_With_AMPscript/AMPscript_101 =====
-%%[  
-/* 101 */ Var @memid, @fname, @lname, @prefname, @address, @zip, @mempref, @plat  
+%%[
+/* 101 */ Var @memid, @fname, @lname, @prefname, @address, @zip, @mempref, @plat
 Set @memid = MemberID
 Set @fname = FirstName
 Set @lname = LastName
@@ -82,309 +82,309 @@ Set @address = Address
 Set @zip = Zip
 Set @mempref = MemPref
 Set @plat = Plat
-/* 101 */  
-]%%%%= v(@fname) =%%, below are your account details  
-First Name:%%= v(@fname) =%%Last Name:%%= v(@lname) =%%  
-Preferred Name:%%= v(@prefname) =%% Address Address:%%= v(@address) =%%  
-Zip:%%= v(@zip) =%% Member Preferences Shopping Preference:%%= v(@mempref) =%%  
-Platinum Member:%%= v(@plat) =%%  
+/* 101 */
+]%%%%= v(@fname) =%%, below are your account details
+First Name:%%= v(@fname) =%%Last Name:%%= v(@lname) =%%
+Preferred Name:%%= v(@prefname) =%% Address Address:%%= v(@address) =%%
+Zip:%%= v(@zip) =%% Member Preferences Shopping Preference:%%= v(@mempref) =%%
+Platinum Member:%%= v(@plat) =%%
 
 ===== ampscript 201 example: http://wiki.memberlandingpages.com/010_ExactTarget/020_Content/AMPscript/Getting_Started_With_AMPscript/AMPscript_201 =====
 
-%%[/* 201 */  
-Var @memid, @fname, @lname, @prefname, @address, @city, @state, @zip, @mempref, @plat, @ship  
-  
-Set @memid = MemberID  
-Set @fname = FirstName  
-Set @lname = LastName  
-Set @prefname = PrefName  
-Set @address = Address  
-Set @zip = Zip  
-Set @city = Lookup("ShipTimes","city","zip",@zip)  
-Set @state = Lookup("ShipTimes","state","zip",@zip)  
-Set @mempref = MemPref  
-Set @plat = Plat  
-  
-/* 201 */ ]%% %%[ if not empty(@prefname) then ]%% %%= v(@prefname) =%% %%[ else ]%% %%= v(@fname) =%%%%[ endif  
- ]%%, below are your account detailsName   
-  
-First Name:%%= v(@fname) =%%Last Name:%%= v(@lname) =%%  
-  
-%%[ if not Empty(@prefname) then ]%%Preferred Name:%%= v(@prefname) =%%  
-  
-%%[ endif ]%%Address   
-  
-Address:%%= v(@address) =%%City:%%= v(@city) =%%  
-State:%%= v(@state) =%%Zip:%%= v(@zip) =%%  
-  
-Member Preferences   
-  
-Shopping Preference:%%= v(@mempref) =%%Platinum Member:%%[ if @plat == "N" then ]%%  
-  
-%%= RedirectTo(Concat('http://example.com?s=',_subscriberkey)) =%%   
-  
-Sign-Up %%[ else ]%%%%= v(@plat) =%%%%[ endif ]%%  
+%%[/* 201 */
+Var @memid, @fname, @lname, @prefname, @address, @city, @state, @zip, @mempref, @plat, @ship
+
+Set @memid = MemberID
+Set @fname = FirstName
+Set @lname = LastName
+Set @prefname = PrefName
+Set @address = Address
+Set @zip = Zip
+Set @city = Lookup("ShipTimes","city","zip",@zip)
+Set @state = Lookup("ShipTimes","state","zip",@zip)
+Set @mempref = MemPref
+Set @plat = Plat
+
+/* 201 */ ]%% %%[ if not empty(@prefname) then ]%% %%= v(@prefname) =%% %%[ else ]%% %%= v(@fname) =%%%%[ endif
+ ]%%, below are your account detailsName
+
+First Name:%%= v(@fname) =%%Last Name:%%= v(@lname) =%%
+
+%%[ if not Empty(@prefname) then ]%%Preferred Name:%%= v(@prefname) =%%
+
+%%[ endif ]%%Address
+
+Address:%%= v(@address) =%%City:%%= v(@city) =%%
+State:%%= v(@state) =%%Zip:%%= v(@zip) =%%
+
+Member Preferences
+
+Shopping Preference:%%= v(@mempref) =%%Platinum Member:%%[ if @plat == "N" then ]%%
+
+%%= RedirectTo(Concat('http://example.com?s=',_subscriberkey)) =%%
+
+Sign-Up %%[ else ]%%%%= v(@plat) =%%%%[ endif ]%%
 
 ===== ampscript 301 example http://wiki.memberlandingpages.com/010_ExactTarget/020_Content/AMPscript/Getting_Started_With_AMPscript/AMPscript_301 =====
 
-%%[/* 301 */  
-  
-Var @memid, @fname, @lname, @prefname, @address, @city, @state, @zip, @mempref, @plat, @rows, @row, @ship  
-  
-Set @memid = MemberID  
-Set @fname = FirstName  
-Set @lname = LastName  
-Set @prefname = PrefName  
-Set @address = Address  
-Set @zip = Zip  
-Set @mempref = MemPref  
-Set @plat = Plat  
+%%[/* 301 */
+
+Var @memid, @fname, @lname, @prefname, @address, @city, @state, @zip, @mempref, @plat, @rows, @row, @ship
+
+Set @memid = MemberID
+Set @fname = FirstName
+Set @lname = LastName
+Set @prefname = PrefName
+Set @address = Address
+Set @zip = Zip
+Set @mempref = MemPref
+Set @plat = Plat
 
 /* 301 */ ]%%
-  
-<div style="border-bottom: 1px solid #EEE; padding: 15px 0;"><strong>%%[ if not empty(@prefname) then ]%%%%= v(@prefname) =%%%%[ else ]%%%%= v(@fname) =%%%%[ endif ]%%</strong>, below are your account details</div>  
-<div style="border-bottom: 1px solid #EEE; padding: 15px 0;">  
-<table width="100%" cellpadding="0" cellspacing="0" border="0">  
-    <tr>  
-        <td height="15" valign="bottom"><font size="2" color="#444444"><strong>Name</strong></font></td>  
-        <td>&nbsp;</td>  
-    </tr>  
-    <tr>  
-        <td height="30"><font size="2">First Name: <strong style="color: #000;">%%= v(@fname) =%%</strong></font></td>  
-        <td height="30"><font size="2">Last Name: <strong style="color: #000;">%%= v(@lname) =%%</strong></font></td>  
-    </tr>  
-    %%[ if not Empty(@prefname) then ]%%  
-    <tr>  
-        <td height="30"><font size="2">Preferred Name: <strong style="color: #000;">%%= v(@prefname) =%%</strong></font></td>  
-        <td></td>  
-    </tr>  
-%%[ endif ]%%  
-    <tr>  
-        <td height="30" valign="bottom"><font size="2" color="#444444"><strong>Address</strong></font></td>  
-        <td>&nbsp;</td>  
-    </tr>  
-    <tr>  
-        <td height="30"><font size="2">Address: <strong style="color: #000;">%%= v(@address) =%%</strong></font></td>  
-%%[ /* We have a zip code to look up on */  
-  
-if Not Empty(@zip) then  
-      
-/* Lets find our zip code in the ShipTimes Data Extension */  
-Set @rows = LookupRows("ShipTimes","zip",@zip)  
-  
-/* We found one row of data */  
-if RowCount(@rows) == 1 then  
-  
-/* Set the row - This now exposes all columns to our variable */  
-Set @row = Row(@rows,1)  
-  
-/* Set the City */  
-Set @city = Field(@row,"city")  
-  
-/* Set the State */  
-Set @state = Field(@row,"state")  
-  
-/* Set the @ship variable to the ShipTime column */  
-Set @ship = Field(@row,"ShipTime")  
-  
-endif  
-  
-endif ]%%  
-  
-        <td height="30"><font size="2">City: <strong style="color: #000;">%%= v(@city) =%%</strong></font></td>  
-    </tr>  
-    <tr>  
-        <td height="30"><font size="2">State: <strong style="color: #000;">%%= v(@state) =%%</strong></font></td>  
-        <td height="30"><font size="2">Zip: <strong style="color: #000;">%%= v(@zip) =%%</strong></font></td>  
-    </tr>  
-    <tr>  
-        <td height="30"><font size="2">  
-%%[ /* We found a record for the zip code */  
-  
-if not empty(@ship) then ]%%  
-  
-Shipping Time: <strong style="color: #000;">%%= v(@ship) =%% %%[ if @ship > 1 then ]%%days%%[ else ]%%day%%[ endif ]%%</strong>  
-  
-%%[ /* We either didn't have a zip code or couldn't find one, prompt for profile update */  
-  
-else ]%%  
-  
-We couldn't find a shipping preference. Please <a href="%%= RedirectTo(Concat('http://example.com?s=',_subscriberkey)) =%%" title="Update Your Profile" alias="Update Your Profile">update your profile</a>  
-  
-%%[ endif ]%%</font></td>  
-  
-        <td height="30"><font size="2">&nbsp;</td>  
-    </tr>  
-    <tr>  
-        <td height="30" valign="bottom"><font size="2" color="#444444"><strong>Member Preferences</strong></font></td>  
-        <td>&nbsp;</td>  
-    </tr>  
-    <tr>  
-        <td height="30"><font size="2">Shopping Preference: <strong style="color: #000;">%%= v(@mempref) =%%</strong></font></td>  
-        <td height="30"><font size="2">Platinum Member: <strong style="color: #000;">%%[ if @plat == "N" then ]%%<a href="%%= RedirectTo(Concat('http://example.com?s=',_subscriberkey)) =%%" alias="Platinum Sign-Up">Sign-Up</a>%%[ else ]%%%%= v(@plat) =%%%%[ endif ]%%</strong></font></td>  
-    </tr>  
-</table>  
+
+<div style="border-bottom: 1px solid #EEE; padding: 15px 0;"><strong>%%[ if not empty(@prefname) then ]%%%%= v(@prefname) =%%%%[ else ]%%%%= v(@fname) =%%%%[ endif ]%%</strong>, below are your account details</div>
+<div style="border-bottom: 1px solid #EEE; padding: 15px 0;">
+<table width="100%" cellpadding="0" cellspacing="0" border="0">
+    <tr>
+        <td height="15" valign="bottom"><font size="2" color="#444444"><strong>Name</strong></font></td>
+        <td>&nbsp;</td>
+    </tr>
+    <tr>
+        <td height="30"><font size="2">First Name: <strong style="color: #000;">%%= v(@fname) =%%</strong></font></td>
+        <td height="30"><font size="2">Last Name: <strong style="color: #000;">%%= v(@lname) =%%</strong></font></td>
+    </tr>
+    %%[ if not Empty(@prefname) then ]%%
+    <tr>
+        <td height="30"><font size="2">Preferred Name: <strong style="color: #000;">%%= v(@prefname) =%%</strong></font></td>
+        <td></td>
+    </tr>
+%%[ endif ]%%
+    <tr>
+        <td height="30" valign="bottom"><font size="2" color="#444444"><strong>Address</strong></font></td>
+        <td>&nbsp;</td>
+    </tr>
+    <tr>
+        <td height="30"><font size="2">Address: <strong style="color: #000;">%%= v(@address) =%%</strong></font></td>
+%%[ /* We have a zip code to look up on */
+
+if Not Empty(@zip) then
+
+/* Lets find our zip code in the ShipTimes Data Extension */
+Set @rows = LookupRows("ShipTimes","zip",@zip)
+
+/* We found one row of data */
+if RowCount(@rows) == 1 then
+
+/* Set the row - This now exposes all columns to our variable */
+Set @row = Row(@rows,1)
+
+/* Set the City */
+Set @city = Field(@row,"city")
+
+/* Set the State */
+Set @state = Field(@row,"state")
+
+/* Set the @ship variable to the ShipTime column */
+Set @ship = Field(@row,"ShipTime")
+
+endif
+
+endif ]%%
+
+        <td height="30"><font size="2">City: <strong style="color: #000;">%%= v(@city) =%%</strong></font></td>
+    </tr>
+    <tr>
+        <td height="30"><font size="2">State: <strong style="color: #000;">%%= v(@state) =%%</strong></font></td>
+        <td height="30"><font size="2">Zip: <strong style="color: #000;">%%= v(@zip) =%%</strong></font></td>
+    </tr>
+    <tr>
+        <td height="30"><font size="2">
+%%[ /* We found a record for the zip code */
+
+if not empty(@ship) then ]%%
+
+Shipping Time: <strong style="color: #000;">%%= v(@ship) =%% %%[ if @ship > 1 then ]%%days%%[ else ]%%day%%[ endif ]%%</strong>
+
+%%[ /* We either didn't have a zip code or couldn't find one, prompt for profile update */
+
+else ]%%
+
+We couldn't find a shipping preference. Please <a href="%%= RedirectTo(Concat('http://example.com?s=',_subscriberkey)) =%%" title="Update Your Profile" alias="Update Your Profile">update your profile</a>
+
+%%[ endif ]%%</font></td>
+
+        <td height="30"><font size="2">&nbsp;</td>
+    </tr>
+    <tr>
+        <td height="30" valign="bottom"><font size="2" color="#444444"><strong>Member Preferences</strong></font></td>
+        <td>&nbsp;</td>
+    </tr>
+    <tr>
+        <td height="30"><font size="2">Shopping Preference: <strong style="color: #000;">%%= v(@mempref) =%%</strong></font></td>
+        <td height="30"><font size="2">Platinum Member: <strong style="color: #000;">%%[ if @plat == "N" then ]%%<a href="%%= RedirectTo(Concat('http://example.com?s=',_subscriberkey)) =%%" alias="Platinum Sign-Up">Sign-Up</a>%%[ else ]%%%%= v(@plat) =%%%%[ endif ]%%</strong></font></td>
+    </tr>
+</table>
 </div>
 
 
 ===== ampscript 401 example http://wiki.memberlandingpages.com/010_ExactTarget/020_Content/AMPscript/Getting_Started_With_AMPscript/AMPscript_401 =====
 
-%%[/* 401 */  
-  
-Var @memid, @fname, @lname, @prefname, @address, @city, @state, @zip, @mempref, @plat, @rows,  
- @row, @ship  
-  
-Set @memid = MemberID  
-Set @fname = FirstName  
-Set @lname = LastName  
-Set @prefname = PrefName  
-Set @address = Address  
-Set @zip = Zip  
-Set @mempref = MemPref  
-Set @plat = Plat  
-  
-/* 401 */ ]%%%%[ if not empty(@prefname) then ]%%%%= v(@prefname) =%%%%[ else ]%%%%= v(@fname) =%%%%[ endif ]%%, below are your account detailsName   
-First Name:%%= v(@fname) =%%Last Name:%%= v(@lname) =%%  
-  
-%%[ if not Empty(@prefname) then ]%%Preferred Name:%%= v(@prefname) =%%  
-  
-%%[ endif ]%%Address   
-  
-Address:%%= v(@address) =%%  
-  
-%%[ /* We have a zip code to look up on */  
-  
-if Not Empty(@zip) then  
-  
-/* Lets find our zip code in the ShipTimes Data Extension */  
-Set @rows = LookupRows("ShipTimes","zip",@zip)  
-  
-/* We found one row of data */  
-if RowCount(@rows) == 1 then  
-  
-/* Set the row - This now exposes all columns to our variable */  
-Set @row = Row(@rows,1)  
-  
-/* Set the City */  
-Set @city = Field(@row,"city")  
-  
-/* Set the State */  
-Set @state = Field(@row,"state")  
-  
-/* Set the @ship variable to the ShipTime column */  
-Set @ship = Field(@row,"ShipTime")  
-  
-endif  
-  
-endif ]%%City:%%= v(@city) =%%  
-  
-State:%%= v(@state) =%%Zip:%%= v(@zip) =%%  
-  
-%%[ /* We found a record for the zip code */  
-  
-if not empty(@ship) then ]%%  
-  
-Shipping Time:%%= v(@ship) =%% %%[ if @ship > 1 then ]%%days%%[ else ]%%day%%[ endif ]%%  
-  
-%%[ /* We either didn't have a zip code or couldn't find one, prompt for profile update */  
-  
-else ]%%  
-  
-We couldn't find a shipping preference. Please  
-  
-%%= RedirectTo(Concat('http://example.com?s=',_subscriberkey)) =%%   
-  
-update your profile   
-  
-%%[ endif ]%%   
-  
-Member Preferences   
-  
-Shopping Preference:%%= v(@mempref) =%%Platinum Member:%%[ if @plat == "N" then ]%%  
-  
-%%= RedirectTo(Concat('http://example.com?s=',_subscriberkey)) =%%   
-  
-Sign-Up %%[ else ]%%%%= v(@plat) =%%%%[ endif ]%%  
-  
-  
-%%[ /* Declare more variables that will be used specifically for our products */  
-Var @prodID, @prodName, @prodDesc, @price, @indicator, @color, @totalPurchases, @decimalChar  
-  
-/* Zero out our total purchases amount */  
-Set @totalPurchases = 0  
-  
-/* Set our CSS color indicator to odd */  
-Set @indicator = "odd"  
-  
-/* Find all the recent purchases for the subscriber we are processing */  
-set @rows = LookupRows("Purchases","MemberID",@memID)  
-  
-/* Make sure we've found some rows before we show any purchase information */  
-if RowCount(@rows) >= 1 then ]%%Recent Purchases  
-  
-%%[ /* Now that we've found some data we can do something with it */  
-  
-for @i = 1 to RowCount(@rows) do  
-  
-/* Set the row to the row we're currently looping through */  
-Set @row = Row(@rows,@i)  
-  
-  
-/* Set some variables */  
-Set @prodID = Field(@row,"ProductID")  
-Set @prodName = Field(@row,"ProductName")  
-Set @prodDesc = Field(@row,"Description")  
-Set @price = Field(@row,"Price")  
-Set @totalPurchases = Add(@totalPurchases,Field(@row,"Price"))  
-  
-/* If the CSS indicator is set to odd use a white background color */  
-if @indicator == "odd" then  
-Set @color = "#FFFFFF"  
-Set @indicator = "even"  
-  
-/* If the CSS indicator is set to even use a gray background color */  
-else  
-Set @color = "#EEEEEE"  
-Set @indicator = "odd"  
-endif  
-  
-/* Call in our recent purchases content box */ ]%%  
-%%= TreatAsContent(ContentAreaByName("my contents\101-401\RecentPurchases")) =%%  
-  
-%%[ next @i ]%%  
-  
-%%[ /* Find out if there are two characters after the decimal point */  
-  
-Set @decimalChar = Subtract(Length(@totalPurchases),IndexOf(@totalPurchases,"."))  
-  
-  
-/* We found only one character after the decimal point */  
-  
-if @decimalChar == 1 then  
-  
-Set @totalPurchases = Concat(@totalPurchases,"0")  
-  
-/* No decimal point was found */  
-  
-elseif @decimalChar == Length(@totalPurchases) then  
-  
-Set @totalPurchases = Concat(@totalPurchases,".00")  
-  
-endif ]%%Total Purchases:$%%= v(@totalPurchases) =%%  
-  
-  
+%%[/* 401 */
+
+Var @memid, @fname, @lname, @prefname, @address, @city, @state, @zip, @mempref, @plat, @rows,
+ @row, @ship
+
+Set @memid = MemberID
+Set @fname = FirstName
+Set @lname = LastName
+Set @prefname = PrefName
+Set @address = Address
+Set @zip = Zip
+Set @mempref = MemPref
+Set @plat = Plat
+
+/* 401 */ ]%%%%[ if not empty(@prefname) then ]%%%%= v(@prefname) =%%%%[ else ]%%%%= v(@fname) =%%%%[ endif ]%%, below are your account detailsName
+First Name:%%= v(@fname) =%%Last Name:%%= v(@lname) =%%
+
+%%[ if not Empty(@prefname) then ]%%Preferred Name:%%= v(@prefname) =%%
+
+%%[ endif ]%%Address
+
+Address:%%= v(@address) =%%
+
+%%[ /* We have a zip code to look up on */
+
+if Not Empty(@zip) then
+
+/* Lets find our zip code in the ShipTimes Data Extension */
+Set @rows = LookupRows("ShipTimes","zip",@zip)
+
+/* We found one row of data */
+if RowCount(@rows) == 1 then
+
+/* Set the row - This now exposes all columns to our variable */
+Set @row = Row(@rows,1)
+
+/* Set the City */
+Set @city = Field(@row,"city")
+
+/* Set the State */
+Set @state = Field(@row,"state")
+
+/* Set the @ship variable to the ShipTime column */
+Set @ship = Field(@row,"ShipTime")
+
+endif
+
+endif ]%%City:%%= v(@city) =%%
+
+State:%%= v(@state) =%%Zip:%%= v(@zip) =%%
+
+%%[ /* We found a record for the zip code */
+
+if not empty(@ship) then ]%%
+
+Shipping Time:%%= v(@ship) =%% %%[ if @ship > 1 then ]%%days%%[ else ]%%day%%[ endif ]%%
+
+%%[ /* We either didn't have a zip code or couldn't find one, prompt for profile update */
+
+else ]%%
+
+We couldn't find a shipping preference. Please
+
+%%= RedirectTo(Concat('http://example.com?s=',_subscriberkey)) =%%
+
+update your profile
+
+%%[ endif ]%%
+
+Member Preferences
+
+Shopping Preference:%%= v(@mempref) =%%Platinum Member:%%[ if @plat == "N" then ]%%
+
+%%= RedirectTo(Concat('http://example.com?s=',_subscriberkey)) =%%
+
+Sign-Up %%[ else ]%%%%= v(@plat) =%%%%[ endif ]%%
+
+%%[ /* Declare more variables that will be used specifically for our products */
+Var @prodID, @prodName, @prodDesc, @price, @indicator, @color, @totalPurchases, @decimalChar
+
+/* Zero out our total purchases amount */
+Set @totalPurchases = 0
+
+/* Set our CSS color indicator to odd */
+Set @indicator = "odd"
+
+/* Find all the recent purchases for the subscriber we are processing */
+set @rows = LookupRows("Purchases","MemberID",@memID)
+
+/* Make sure we've found some rows before we show any purchase information */
+if RowCount(@rows) >= 1 then ]%%Recent Purchases
+
+%%[ /* Now that we've found some data we can do something with it */
+
+for @i = 1 to RowCount(@rows) do
+
+/* Set the row to the row we're currently looping through */
+Set @row = Row(@rows,@i)
+
+/* Set some variables */
+Set @prodID = Field(@row,"ProductID")
+Set @prodName = Field(@row,"ProductName")
+Set @prodDesc = Field(@row,"Description")
+Set @price = Field(@row,"Price")
+Set @totalPurchases = Add(@totalPurchases,Field(@row,"Price"))
+
+/* If the CSS indicator is set to odd use a white background color */
+if @indicator == "odd" then
+Set @color = "#FFFFFF"
+Set @indicator = "even"
+
+/* If the CSS indicator is set to even use a gray background color */
+else
+Set @color = "#EEEEEE"
+Set @indicator = "odd"
+endif
+
+/* Call in our recent purchases content box */ ]%%
+%%= TreatAsContent(ContentAreaByName("my contents\101-401\RecentPurchases")) =%%
+
+%%[ next @i ]%%
+
+%%[ /* Find out if there are two characters after the decimal point */
+
+Set @decimalChar = Subtract(Length(@totalPurchases),IndexOf(@totalPurchases,"."))
+
+/* We found only one character after the decimal point */
+
+if @decimalChar == 1 then
+
+Set @totalPurchases = Concat(@totalPurchases,"0")
+
+/* No decimal point was found */
+
+elseif @decimalChar == Length(@totalPurchases) then
+
+Set @totalPurchases = Concat(@totalPurchases,".00")
+
+endif ]%%Total Purchases:$%%= v(@totalPurchases) =%%
+
 %%[ endif ]%%
 
 ===== personalization strings http://wiki.memberlandingpages.com/010_ExactTarget/020_Content/AMPscript/Using_Personalization_Strings_with_AMPscript  =====
 %%[
-
+__AdditionalEmailAttribute1
+__AdditionalEmailAttribute2
+__AdditionalEmailAttribute3
+__AdditionalEmailAttribute4
+__AdditionalEmailAttribute5
 additionalinfo_
 comment_
 comment
 emailaddr
 _EmailID
 emailname_
-firstname_ 
+firstname_
 firstname
 ftaf_url
 fullname_
@@ -405,6 +405,7 @@ member_busname
 member_city
 member_country
 memberid
+MemberID
 member_postalcode
 member_state
 _messagecontext
