@@ -1,7 +1,7 @@
 AMPScript
 ====
 
-It is an exact target creation, you can find the docs here: http://wiki.memberlandingpages.com/AMPscript/AMPscript_Syntax_Guide
+It is an exact target creation, you can find the docs here: https://developer.salesforce.com/docs/atlas.en-us.mc-programmatic-content.meta/mc-programmatic-content/index.htm
 
 INSTALL
 ====
