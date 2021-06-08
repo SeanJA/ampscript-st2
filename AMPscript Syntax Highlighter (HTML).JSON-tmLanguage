@@ -1,0 +1,229 @@
+{
+  "name": "AMPscript Syntax Highlighter (HTML)",
+  "version": "1.0.0",
+  "scopeName": "text.html.ampscript",
+  "fileTypes": [
+    "amp",
+    "AMPscript"
+  ],
+  "keyEquivalent": "^~A",
+  "foldingStartMarker": "(<(?i:(head|table|div|style|script|ul|ol|form|dl))\\b.*?>|\\{)",
+  "foldingStopMarker": "(</(?i:(head|table|div|style|script|ul|ol|form|dl))>|\\})",
+  "repository": {
+    "ampscript-block": {
+      "name": "source.ampscript",
+      "begin": "(%%\\[|<script\\s{0,}runat=[\"']{0,1}server[\"']{0,1}\\slanguage=[\"']{0,1}ampscript[\"']{0,1}>)",
+      "end": "(\\]%%|</script>)",
+      "beginCaptures": {
+        "0": {
+          "name": "meta.embedded.block.ampscript"
+        }
+      },
+      "endCaptures": {
+        "0": {
+          "name": "meta.embedded.block.ampscript"
+        }
+      },
+      "patterns": [
+        {
+          "include": "#ampscript-comments"
+        },
+        {
+          "include": "#ampscript-system-strings-block"
+        },
+        {
+          "include": "#ampscript-constants"
+        },
+        {
+          "include": "#ampscript-strings"
+        },
+        {
+          "include": "#ampscript-numbers"
+        },
+        {
+          "include": "#ampscript-functions"
+        },
+        {
+          "include": "#ampscript-variables"
+        },
+        {
+          "include": "#ampscript-language-elements"
+        }
+      ]
+    },
+    "ampscript-inline": {
+      "name": "source.ampscript",
+      "begin": "(%%=)",
+      "end": "(=%%)",
+      "beginCaptures": {
+        "0": {
+          "name": "meta.embedded.block.ampscript"
+        }
+      },
+      "endCaptures": {
+        "0": {
+          "name": "meta.embedded.block.ampscript"
+        }
+      },
+      "patterns": [
+        {
+          "include": "#ampscript-system-strings-inline"
+        },
+        {
+          "include": "#ampscript-variables"
+        },
+        {
+          "include": "#ampscript-functions"
+        },
+        {
+          "include": "#ampscript-strings"
+        }
+      ]
+    },
+    "ampscript-comments": {
+      "name": "comment.block.ampscript",
+      "comment": "Comments",
+      "begin": "/\\*",
+      "captures": {
+        "0": {
+          "name": "punctuation.definition.comment.ampscript"
+        }
+      },
+      "end": "\\*/"
+    },
+    "ampscript-system-strings-inline": {
+      "patterns": [
+        {
+          "name": "constant.language",
+          "match": "%%(?i:MSG\\(0\\)\\.NOUNS|MSG\\(0\\)\\.VERB|MSG\\(0\\)\\.NOUN\\([0-9]\\)|MSG\\(0\\)|MMS_CONTENT_URL\\([0-9]\\)|TEXT\\.NOUN\\([0-9]\\)|TEXT\\.NOUN|STKR\\.STKPKGID|STKR\\.STKID|STKR\\.STKTXT|microsite_base_url\\[default\\](.*?)\\[/default\\])%%"
+        },
+        {
+          "name": "constant.language",
+          "match": "%%(?i:__additionalemailattribute[\\d]|_datasourcename|_emailid|_impressionregionid|_impressionregionname|_istestsend|_jobsubscriberbatchid|_listname|_messagecontext|_messagetypepreference|_preheader|_replycontent|_subscriberkey|additionalinfo_|double_opt_in_url|emailaddr|emailname_|firstname_|firstname|firstn|ftaf_url|jobid|lastname|lastname_|line_address_id|line_job_id|line_subscriber_id|linkname|list_|listid|listsubid|member_addr|member_busname|member_city|member_country|member_postalcode|member_state|memberid|microsite_base_url|mobile_number|msg|pageurl|profile_center_url|replyemailaddress|replyname|short_code|subscriberid|subscription_center_url|unsub_center_url|view_email_url|xtdayofweek|xtday|xtlongdate|xtmonthnumeric|xtmonth|xtshortdate|xtyear|_RMM_Headers|_RMM_ReplyBodyText|_RMM_ReplyBodyHTML|_RMM_ReplySubject|_RMM_JobID|_RMM_ListID|_RMM_BatchID|_RMM_SubscriberID|_RMM_RecipientEmailAddress|_RMM_RecipientSubscriberKey|_CarrierID|_Channel|_City|_ContactID|_CountryCode|_CreatedBy|_CreatedDate|_FirstName|_IsHonorDST|_LastName|_MobileNumber|_ModifiedBy|_ModifiedDate|_Priority|_Source|_SourceObjectID|_State|_Status|_UTCOffset|_ZipCode|TEXT|VERB|MMS_CONTENT_URL)%%"
+        }
+      ]
+    },
+    "ampscript-system-strings-block": {
+      "patterns": [
+        {
+          "name": "constant.language",
+          "match": "(?i:MSG\\(0\\)\\.NOUNS|MSG\\(0\\)\\.VERB|MSG\\(0\\)\\.NOUN\\([0-9]\\)|MSG\\(0\\)|MMS_CONTENT_URL\\([0-9]\\)|TEXT\\.NOUN\\([0-9]\\)|TEXT\\.NOUN|STKR\\.STKPKGID|STKR\\.STKID|STKR\\.STKTXT)"
+        },
+        {
+          "name": "constant.language",
+          "match": "\\b(?i:__additionalemailattribute[\\d]|_datasourcename|_emailid|_impressionregionid|_impressionregionname|_istestsend|_jobsubscriberbatchid|_listname|_messagecontext|_messagetypepreference|_preheader|_replycontent|_subscriberkey|additionalinfo_|double_opt_in_url|emailaddr|emailname_|firstname_|firstname|firstn|ftaf_url|jobid|lastname|lastname_|line_address_id|line_job_id|line_subscriber_id|linkname|list_|listid|listsubid|member_addr|member_busname|member_city|member_country|member_postalcode|member_state|memberid|microsite_base_url|mobile_number|msg|pageurl|profile_center_url|replyemailaddress|replyname|short_code|subscriberid|subscription_center_url|unsub_center_url|view_email_url|xtdayofweek|xtday|xtlongdate|xtmonthnumeric|xtmonth|xtshortdate|xtyear|_RMM_Headers|_RMM_ReplyBodyText|_RMM_ReplyBodyHTML|_RMM_ReplySubject|_RMM_JobID|_RMM_ListID|_RMM_BatchID|_RMM_SubscriberID|_RMM_RecipientEmailAddress|_RMM_RecipientSubscriberKey|_CarrierID|_Channel|_City|_ContactID|_CountryCode|_CreatedBy|_CreatedDate|_FirstName|_IsHonorDST|_LastName|_MobileNumber|_ModifiedBy|_ModifiedDate|_Priority|_Source|_SourceObjectID|_State|_Status|_UTCOffset|_ZipCode|TEXT|VERB|MMS_CONTENT_URL)\\b"
+        }
+      ]
+    },
+    "ampscript-constants": {
+       "patterns": [
+          {
+            "name": "constant.language",
+            "match": "((?i:true|false|null)\\b)"
+          }
+       ]
+    },
+    "ampscript-strings": {
+      "patterns": [
+         {
+            "name": "string.quoted.ampscript",
+            "match": "([\"](.*?)[\"]|'(.*?)')"
+          }
+      ]
+    },
+    "ampscript-numbers": {
+      "name": "constant.numeric.ampscript",
+      "match": "\\b((0(x|X)[0-9a-fA-F]+)|([0-9]+(\\.[0-9]+)?))\\b"
+    },
+    "ampscript-functions": {
+      "name": "support.function.ampscript",
+      "begin": "(?i:Add|AddMSCRMListMember|AddObjectArrayItem|AttachFile|AttributeValue|AuthenticatedEmployeeID|AuthenticatedEmployeeNotificationAddress|AuthenticatedEmployeeUserName|AuthenticatedEnterpriseID|AuthenticatedMemberID|AuthenticatedMemberName|BarCodeURL|Base64Decode|Base64Encode|BeginImpressionRegion|BuildOptionList|BuildRowSetFromString|BuildRowSetFromXML|Char|ClaimRow|ClaimRowValue|CloudPagesURL|Concat|ContentArea|ContentAreaByName|ContentBlockbyId|ContentBlockbyKey|ContentBlockbyName|ContentImagebyID|ContentImagebyKey|CreateMSCRMRecord|CreateObject|CreateSalesforceObject|CreateSmsConversation|DataExtensionRowCount|DateAdd|DateDiff|DateParse|DatePart|DecryptSymmetric|DeleteData|DeleteDE|DescribeMSCRMEntities|DescribeMSCRMEntityAttributes|Divide|Domain|Empty|EncryptSymmetric|EndImpressionRegion|EndSmsConversation|ExecuteFilter|ExecuteFilterOrderedRows|Field|Format|FormatCurrency|FormatDate|FormatNumber|GetSendTime|GetPortfolioItem|GetPublishedSocialContent|GetSocialPublishURL|GetSocialPublishURLByName|GetValue|GUID|HTTPGet|HTTPPost|HTTPPost2|HTTPRequestHeader|IIf|Image|IndexOf|InsertData|InsertDE|InvokeCreate|InvokeDelete|InvokeExecute|InvokePerform|InvokeRetrieve|InvokeUpdate|IsCHTMLBrowser|IsEmailAddress|IsNull|IsNullDefault|IsPhoneNumber|Length|LiveContentMicrositeURL|LocalDateToSystemDate|LongSFID|Lookup|LookupOrderedRows|LookupOrderedRowsCS|LookupRows|LookupRowsCS|Lowercase|MD5|MicrositeURL|Mod|Multiply|Now|Output|OutputLine|ProperCase|QueryParameter|RaiseError|Random|RatingStars|Redirect|RedirectTo|RegExMatch|Replace|ReplaceList|RequestParameter|RetrieveMSCRMRecords|RetrieveMSCRMRecordsFetchXML|RetrieveSalesforceJobSources|RetrieveSalesforceObjects|Row|RowCount|SetObjectProperty|SetSmsConversationNextKeyword|SetStateMSCRMRecord|SetValue|SHA1|SHA256|SHA512|StringToDate|StringToHex|Substring|Subtract|SystemDateToLocalDate|TransformXML|TreatAsContent|TreatAsContentArea|Trim|UpdateData|UpdateDE|UpdateMSCRMRecords|UpdateSingleSalesforceObject|Uppercase|UpsertContact|UpsertData|UpsertDE|UpsertMSCRMRecord|URLEncode|V|WAT|WATP|WrapLongURL)\\(",
+      "end": "\\)",
+      "beginCaptures": {
+        "0": {
+          "name": "support.function.ampscript"
+        }
+      },
+      "endCaptures": {
+        "0": {
+          "name": "support.function.ampscript"
+        }
+      },
+      "patterns": [
+        {
+          "include": "#ampscript-system-strings-inline"
+        },
+        {
+          "include": "#ampscript-variables"
+        },
+        {
+          "include": "#ampscript-functions"
+        },
+        {
+          "include": "#ampscript-strings"
+        }
+      ]
+    },
+    "ampscript-variables": {
+      "patterns": [
+        {
+          "name": "variable.language.ampscript",
+          "comment": "Variable",
+          "match": "\\@[a-zA-Z][A-Za-z0-9_]{0,}"
+        },
+        {
+          "name": "variable.language.ampscript",
+          "comment": "System or Substitution Placeholder",
+          "match": "\\[[^\\s][a-zA-Z0-9_ ]+[^\\s]\\]"
+        }
+      ]
+    },
+    "ampscript-language-elements": {
+      "patterns": [
+        {
+          "name": "keyword.control.conditional.ampscript",
+          "comment": "Conditional",
+          "match": "(\\b(?i:if|then|elseif|else|endif)\\b)"
+        },
+        {
+          "name": "keyword.control.ampscript",
+          "comment": "Loop",
+          "match": "(\\b(?i:for|to|downto|do|next)\\b)"
+        },
+        {
+          "name": "storage.type.ampscript",
+          "comment": "Variable declaration and assignment",
+          "match": "(\\b(?i:var|set)\\b)"
+        },
+        {
+          "name": "keyword.operator.ampscript",
+          "comment": "Operators",
+          "match": "(?i:=|\\,|==|==|!=|\\b>\\b|\\b<\\b|>=|<=|\\b(AND|OR|NOT)\\b)"
+        }
+      ]
+    }
+  },
+  "patterns": [
+    {
+      "include": "#ampscript-block"
+    },
+    {
+      "include": "#ampscript-inline"
+    },
+    {
+      "include": "#ampscript-system-strings-inline"
+    },
+    {
+      "include": "#ampscript-system-strings-block"
+    },
+    {
+      "include": "#ampscript-constants"
+    },
+    {
+      "include": "#ampscript-functions"
+    },
+    {
+      "include": "text.html.basic"
+    }
+  ]
+}

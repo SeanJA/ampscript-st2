@@ -1,585 +1,690 @@
-===== block test (fully highlighted) =====
+<!DOCTYPE html>
+<html>
+<head>
+    <title>test.amp</title>
+    <style>
+        h1 {color:green!important;}
+    </style>
+</head>
+<body>
+<h1>AMPscript Syntax Highlighter</h1>
+<h2>dedicated the Distinguished Architect and creator of AMPscript, Tom Waltz.</h2>
+Now is the time for all good men and women to come to the aid of their country.
 %%[
-/** this is a comment! **/
-VAR @VARIABLE1
-VAR @Variable2
-VAR @variable
-/* this should not be highlighted at all */
-VAR @1NotAVarialbe
-VAR @ThisHowever_IsAvariable1
-SET @ThisHowever_IsAvariable2 = 'test'
-SET @ThisHowever_IsAvariable3 = 1234515143214312341234
-/* this should be highlighted */
-jobid
+
+    /** this is a comment! **/
+    /* this is a comment, too! */
+    /*
+      multi-line comment
+    */
+
+    VAR @VARIABLE1
+    VAR @Variable2
+    VAR @variable
+    VAR @1ThisIsNotAVariable /* not a valid variable */
+    VAR @ThisHowever_IsAvariable1
+
+    SET @ThisHowever_IsAvariable2 = 'test'
+    SET @ThisHowever_IsAvariable3 = 1234515143214312341234
+    SET @ThisHowever_IsAvariable4 = true
+    SET @ThisHowever_IsAvariable5 = false
+    SET @ThisHowever_IsAvariable6 = null
+    set @ThisHowever_IsAvariable7 = [Naked Personalization String with Spaces]
+    set @ThisHowever_IsAvariable8 = [NakedPersonalizationStringNoSpaces]
+
+    /* system string */
+    set @jobIid = jobid
+
+    /* FOR LOOP */
+    FOR @j = 1 to @numofProperties DO
+
+        IF @j >= 1 AND @numofProperties == 16 THEN
+
+            SET @currentProp = Row(@properties, @j)
+            Set @Field1= FIELD(@currentProp ,"Name")
+            set @Field2= FIELD(@currentProp ,"Value")
+
+        ENDIF
+
+    NEXT @j
 
 ]%%
 
-===== constant (should be highlighted anywhere in the file) =====
-%%jobid%%
-//this should be plain text though because it deoesn't have the "%%"s around it
-jobid
-
-===== constant in quotes (should highlight the constant) =====
-
-<div var="%%jobid%%"></div>
-<div var='%%jobid%%'></div>
-<div var="some text then %%jobid%%"></div>
-<div var='%%jobid%% then some text'></div>
-<div var='some text then %%jobid%% then some text'></div>
-
-===== function in quotes (should highlight the function and contents) =====
-
-<img src='%%=v(@ADURL1)=%%' />
-<img src='some text then %%=v(@IMGURL1)=%%' border="0" alt="Ad 1" />
-<img src='%%=v(@IMGURL1)=%% then some text' border="0" alt="Ad 1" />
-<img src='some text then %%=v(@IMGURL1)=%% then some text' border="0" alt="Ad 1" />
-
-===== inline test (should highlight betweet the "%%"s) =====
-
-%%=ContentAreaByName("my contents\some sub file")=%%
-some text before %%=ContentAreaByName("my contents\some sub file")=%%
-%%=ContentAreaByName("my contents\some sub file")=%% some text afterwards
-some text before %%=ContentAreaByName("my contents\some sub file")=%% some text afterwards
-
-===== function inside a function (both functions should be highlighted) =====
-%%=Format(Now(), "ddd, MMM dd, yyyy")=%%
-
-===== inside some html (should be highlighted between the "%%"s) =====
-<div>%%=ContentAreaByName("my contents\some sub file")=%%</div>
+<span style="color: #000;">%%=v(@shipLabel)=%% %%[ if @ship > 1 then ]%%days%%[ else ]%%day%%[ endif ]%%</span>
 
 
-===== for loop =====
-%%[
+%%[ IF @var1 >= @var2 and @var1 < 1000 THEN ]%%
 
-FOR @j = 1 to @numofProperties DO
-    IF @j >= 1 AND @numofProperties == 16 THEN
-        SET @currentProp = Row(@properties, @j)
-        Set @Field1= FIELD(@currentProp ,"Name")
-        Set @Field2= FIELD(@currentProp ,"Value")
-    ENDIF
-]%%
+   <h1>WHEE!</h1>
+   Hi, %%= v(@fname) =%%
+   <img src='%%=v(@imageURL1)=%%' />
+   <br>%%=v(@imageURL1)=%%
 
+%%[ ELSEIF @var1 <= @var3 OR @var4 != "booger" then ]%%
 
-===== if elseif else endif =====
+   <h1>WHOA!</h1>
+   Hey, %%=v(@fname)=%%
+   <img src="%%=v(@imageURL2)=%%" />
+   <br>%%=v(@imageURL2)=%%
 
-%%[ IF @var1 >= @var2 THEN ]%%
-    [wrapped script or email content]
-%%[ ELSEIF @var1 <= @var3 THEN ]%%
-    [wrapped script or email content]
 %%[ ELSE ]%%
-    [wrapped script or email content]
+
+   <h1>WHAT?</h1>
+   %%__AdditionalEmailAttribute1%%
+
 %%[ ENDIF ]%%
 
+<!-- alternate block syntax -->
+<script runat="server" language="ampscript">
 
-===== ampscript 101 example: http://wiki.memberlandingpages.com/010_ExactTarget/020_Content/AMPscript/Getting_Started_With_AMPscript/AMPscript_101 =====
-%%[
-/* 101 */ Var @memid, @fname, @lname, @prefname, @address, @zip, @mempref, @plat
-Set @memid = MemberID
-Set @fname = FirstName
-Set @lname = LastName
-Set @prefname = PrefName
-Set @address = Address
-Set @zip = Zip
-Set @mempref = MemPref
-Set @plat = Plat
-/* 101 */
-]%%%%= v(@fname) =%%, below are your account details
-First Name:%%= v(@fname) =%%Last Name:%%= v(@lname) =%%
-Preferred Name:%%= v(@prefname) =%% Address Address:%%= v(@address) =%%
-Zip:%%= v(@zip) =%% Member Preferences Shopping Preference:%%= v(@mempref) =%%
-Platinum Member:%%= v(@plat) =%%
+    FOR @j = 1 to @numofProperties DO
 
-===== ampscript 201 example: http://wiki.memberlandingpages.com/010_ExactTarget/020_Content/AMPscript/Getting_Started_With_AMPscript/AMPscript_201 =====
+        IF @j >= 1 AND @numofProperties == 16 THEN
 
-%%[/* 201 */
-Var @memid, @fname, @lname, @prefname, @address, @city, @state, @zip, @mempref, @plat, @ship
+            SET @currentProp = Row(@properties, @j)
+            Set @Field1= FIELD(@currentProp ,"Name")
+            set @Field2= FIELD(@currentProp ,"Value")
 
-Set @memid = MemberID
-Set @fname = FirstName
-Set @lname = LastName
-Set @prefname = PrefName
-Set @address = Address
-Set @zip = Zip
-Set @city = Lookup("ShipTimes","city","zip",@zip)
-Set @state = Lookup("ShipTimes","state","zip",@zip)
-Set @mempref = MemPref
-Set @plat = Plat
+        ENDIF
 
-/* 201 */ ]%% %%[ if not empty(@prefname) then ]%% %%= v(@prefname) =%% %%[ else ]%% %%= v(@fname) =%%%%[ endif
- ]%%, below are your account detailsName
+    NEXT @j
 
-First Name:%%= v(@fname) =%%Last Name:%%= v(@lname) =%%
+</script>
 
-%%[ if not Empty(@prefname) then ]%%Preferred Name:%%= v(@prefname) =%%
-
-%%[ endif ]%%Address
-
-Address:%%= v(@address) =%%City:%%= v(@city) =%%
-State:%%= v(@state) =%%Zip:%%= v(@zip) =%%
-
-Member Preferences
-
-Shopping Preference:%%= v(@mempref) =%%Platinum Member:%%[ if @plat == "N" then ]%%
-
-%%= RedirectTo(Concat('http://example.com?s=',_subscriberkey)) =%%
-
-Sign-Up %%[ else ]%%%%= v(@plat) =%%%%[ endif ]%%
-
-===== ampscript 301 example http://wiki.memberlandingpages.com/010_ExactTarget/020_Content/AMPscript/Getting_Started_With_AMPscript/AMPscript_301 =====
-
-%%[/* 301 */
-
-Var @memid, @fname, @lname, @prefname, @address, @city, @state, @zip, @mempref, @plat, @rows, @row, @ship
-
-Set @memid = MemberID
-Set @fname = FirstName
-Set @lname = LastName
-Set @prefname = PrefName
-Set @address = Address
-Set @zip = Zip
-Set @mempref = MemPref
-Set @plat = Plat
-
-/* 301 */ ]%%
-
-<div style="border-bottom: 1px solid #EEE; padding: 15px 0;"><strong>%%[ if not empty(@prefname) then ]%%%%= v(@prefname) =%%%%[ else ]%%%%= v(@fname) =%%%%[ endif ]%%</strong>, below are your account details</div>
-<div style="border-bottom: 1px solid #EEE; padding: 15px 0;">
-<table width="100%" cellpadding="0" cellspacing="0" border="0">
-    <tr>
-        <td height="15" valign="bottom"><font size="2" color="#444444"><strong>Name</strong></font></td>
-        <td>&nbsp;</td>
-    </tr>
-    <tr>
-        <td height="30"><font size="2">First Name: <strong style="color: #000;">%%= v(@fname) =%%</strong></font></td>
-        <td height="30"><font size="2">Last Name: <strong style="color: #000;">%%= v(@lname) =%%</strong></font></td>
-    </tr>
-    %%[ if not Empty(@prefname) then ]%%
-    <tr>
-        <td height="30"><font size="2">Preferred Name: <strong style="color: #000;">%%= v(@prefname) =%%</strong></font></td>
-        <td></td>
-    </tr>
-%%[ endif ]%%
-    <tr>
-        <td height="30" valign="bottom"><font size="2" color="#444444"><strong>Address</strong></font></td>
-        <td>&nbsp;</td>
-    </tr>
-    <tr>
-        <td height="30"><font size="2">Address: <strong style="color: #000;">%%= v(@address) =%%</strong></font></td>
-%%[ /* We have a zip code to look up on */
-
-if Not Empty(@zip) then
-
-/* Lets find our zip code in the ShipTimes Data Extension */
-Set @rows = LookupRows("ShipTimes","zip",@zip)
-
-/* We found one row of data */
-if RowCount(@rows) == 1 then
-
-/* Set the row - This now exposes all columns to our variable */
-Set @row = Row(@rows,1)
-
-/* Set the City */
-Set @city = Field(@row,"city")
-
-/* Set the State */
-Set @state = Field(@row,"state")
-
-/* Set the @ship variable to the ShipTime column */
-Set @ship = Field(@row,"ShipTime")
-
-endif
-
-endif ]%%
-
-        <td height="30"><font size="2">City: <strong style="color: #000;">%%= v(@city) =%%</strong></font></td>
-    </tr>
-    <tr>
-        <td height="30"><font size="2">State: <strong style="color: #000;">%%= v(@state) =%%</strong></font></td>
-        <td height="30"><font size="2">Zip: <strong style="color: #000;">%%= v(@zip) =%%</strong></font></td>
-    </tr>
-    <tr>
-        <td height="30"><font size="2">
-%%[ /* We found a record for the zip code */
-
-if not empty(@ship) then ]%%
-
-Shipping Time: <strong style="color: #000;">%%= v(@ship) =%% %%[ if @ship > 1 then ]%%days%%[ else ]%%day%%[ endif ]%%</strong>
-
-%%[ /* We either didn't have a zip code or couldn't find one, prompt for profile update */
-
-else ]%%
-
-We couldn't find a shipping preference. Please <a href="%%= RedirectTo(Concat('http://example.com?s=',_subscriberkey)) =%%" title="Update Your Profile" alias="Update Your Profile">update your profile</a>
-
-%%[ endif ]%%</font></td>
-
-        <td height="30"><font size="2">&nbsp;</td>
-    </tr>
-    <tr>
-        <td height="30" valign="bottom"><font size="2" color="#444444"><strong>Member Preferences</strong></font></td>
-        <td>&nbsp;</td>
-    </tr>
-    <tr>
-        <td height="30"><font size="2">Shopping Preference: <strong style="color: #000;">%%= v(@mempref) =%%</strong></font></td>
-        <td height="30"><font size="2">Platinum Member: <strong style="color: #000;">%%[ if @plat == "N" then ]%%<a href="%%= RedirectTo(Concat('http://example.com?s=',_subscriberkey)) =%%" alias="Platinum Sign-Up">Sign-Up</a>%%[ else ]%%%%= v(@plat) =%%%%[ endif ]%%</strong></font></td>
-    </tr>
-</table>
-</div>
-
-
-===== ampscript 401 example http://wiki.memberlandingpages.com/010_ExactTarget/020_Content/AMPscript/Getting_Started_With_AMPscript/AMPscript_401 =====
-
-%%[/* 401 */
-
-Var @memid, @fname, @lname, @prefname, @address, @city, @state, @zip, @mempref, @plat, @rows,
- @row, @ship
-
-Set @memid = MemberID
-Set @fname = FirstName
-Set @lname = LastName
-Set @prefname = PrefName
-Set @address = Address
-Set @zip = Zip
-Set @mempref = MemPref
-Set @plat = Plat
-
-/* 401 */ ]%%%%[ if not empty(@prefname) then ]%%%%= v(@prefname) =%%%%[ else ]%%%%= v(@fname) =%%%%[ endif ]%%, below are your account detailsName
-First Name:%%= v(@fname) =%%Last Name:%%= v(@lname) =%%
-
-%%[ if not Empty(@prefname) then ]%%Preferred Name:%%= v(@prefname) =%%
-
-%%[ endif ]%%Address
-
-Address:%%= v(@address) =%%
-
-%%[ /* We have a zip code to look up on */
-
-if Not Empty(@zip) then
-
-/* Lets find our zip code in the ShipTimes Data Extension */
-Set @rows = LookupRows("ShipTimes","zip",@zip)
-
-/* We found one row of data */
-if RowCount(@rows) == 1 then
-
-/* Set the row - This now exposes all columns to our variable */
-Set @row = Row(@rows,1)
-
-/* Set the City */
-Set @city = Field(@row,"city")
-
-/* Set the State */
-Set @state = Field(@row,"state")
-
-/* Set the @ship variable to the ShipTime column */
-Set @ship = Field(@row,"ShipTime")
-
-endif
-
-endif ]%%City:%%= v(@city) =%%
-
-State:%%= v(@state) =%%Zip:%%= v(@zip) =%%
-
-%%[ /* We found a record for the zip code */
-
-if not empty(@ship) then ]%%
-
-Shipping Time:%%= v(@ship) =%% %%[ if @ship > 1 then ]%%days%%[ else ]%%day%%[ endif ]%%
-
-%%[ /* We either didn't have a zip code or couldn't find one, prompt for profile update */
-
-else ]%%
-
-We couldn't find a shipping preference. Please
-
-%%= RedirectTo(Concat('http://example.com?s=',_subscriberkey)) =%%
-
-update your profile
-
-%%[ endif ]%%
-
-Member Preferences
-
-Shopping Preference:%%= v(@mempref) =%%Platinum Member:%%[ if @plat == "N" then ]%%
-
-%%= RedirectTo(Concat('http://example.com?s=',_subscriberkey)) =%%
-
-Sign-Up %%[ else ]%%%%= v(@plat) =%%%%[ endif ]%%
-
-%%[ /* Declare more variables that will be used specifically for our products */
-Var @prodID, @prodName, @prodDesc, @price, @indicator, @color, @totalPurchases, @decimalChar
-
-/* Zero out our total purchases amount */
-Set @totalPurchases = 0
-
-/* Set our CSS color indicator to odd */
-Set @indicator = "odd"
-
-/* Find all the recent purchases for the subscriber we are processing */
-set @rows = LookupRows("Purchases","MemberID",@memID)
-
-/* Make sure we've found some rows before we show any purchase information */
-if RowCount(@rows) >= 1 then ]%%Recent Purchases
-
-%%[ /* Now that we've found some data we can do something with it */
-
-for @i = 1 to RowCount(@rows) do
-
-/* Set the row to the row we're currently looping through */
-Set @row = Row(@rows,@i)
-
-/* Set some variables */
-Set @prodID = Field(@row,"ProductID")
-Set @prodName = Field(@row,"ProductName")
-Set @prodDesc = Field(@row,"Description")
-Set @price = Field(@row,"Price")
-Set @totalPurchases = Add(@totalPurchases,Field(@row,"Price"))
-
-/* If the CSS indicator is set to odd use a white background color */
-if @indicator == "odd" then
-Set @color = "#FFFFFF"
-Set @indicator = "even"
-
-/* If the CSS indicator is set to even use a gray background color */
-else
-Set @color = "#EEEEEE"
-Set @indicator = "odd"
-endif
-
-/* Call in our recent purchases content box */ ]%%
-%%= TreatAsContent(ContentAreaByName("my contents\101-401\RecentPurchases")) =%%
-
-%%[ next @i ]%%
-
-%%[ /* Find out if there are two characters after the decimal point */
-
-Set @decimalChar = Subtract(Length(@totalPurchases),IndexOf(@totalPurchases,"."))
-
-/* We found only one character after the decimal point */
-
-if @decimalChar == 1 then
-
-Set @totalPurchases = Concat(@totalPurchases,"0")
-
-/* No decimal point was found */
-
-elseif @decimalChar == Length(@totalPurchases) then
-
-Set @totalPurchases = Concat(@totalPurchases,".00")
-
-endif ]%%Total Purchases:$%%= v(@totalPurchases) =%%
-
-%%[ endif ]%%
-
-===== personalization strings http://wiki.memberlandingpages.com/010_ExactTarget/020_Content/AMPscript/Using_Personalization_Strings_with_AMPscript  =====
+<!-- SYSTEM STRINGS - BLOCK -->
 %%[
 
-_carrierid
-_channel
-_city
-_contactid
-_countrycode
-_createdby
-_createddate
-_emailid
-_firstname
-_impressionregionid
-_impressionregionname
-_ishonordst
-_istestsend
-_jobsubscriberbatchid
-_lastname
-_listname
-_mobilenumber
-_modifiedby
-_modifieddate
-_priority
-_source
-_sourceobjectid
-_state
-_status
-_utcoffset
-_zipcode
-__additionalemailattribute1
-__additionalemailattribute2
-__additionalemailattribute3
-__additionalemailattribute4
-__additionalemailattribute5
-_messagecontext
-_messagetypepreference
-_replycontent
-_subscriberkey
-additionalinfo_
-comment
-comment_
-emailaddr
-emailname_
-firstname
-firstname_
-ftaf_url
-fullname
-fullname_
-jobid
-lastname
-lastname_
-list_
-listid
-listsubid
-member_addr
-member_busname
-member_city
-member_country
-member_postalcode
-member_state
-memberid
-profile_center_url
-replyemailaddress
-replyname
-subscriberid
-subscription_center_url
-unsub_center_url
-view_email_url
-xtday
-xtdayofweek
-xtlongdate
-xtmonth
-xtmonthnumeric
-xtshortdate
-xtyear
+    /* Email Date Strings*/
+    set @a = xtmonth
+    set @a = xtmonthnumeric
+    set @a = xtday
+    set @a = xtdayofweek
+    set @a = xtyear
+    set @a = xtshortdate
+    set @a = xtlongdate
+
+    /* Email Data Strings */
+    set @a = emailaddr
+    set @a = firstname_
+    set @a = firstname
+    set @a = lastname_
+    set @a = lastname
+    set @a = subscriberid
+    set @a = _subscriberkey
+    set @a = listid
+    set @a = list_
+    set @a = listsubid
+    set @a = _messagetypepreference
+
+    /* Sender Data Strings */
+    set @a = replyname
+    set @a = replyemailaddress
+    set @a = memberid
+    set @a = member_busname
+    set @a = member_addr
+    set @a = member_city
+    set @a = member_state
+    set @a = member_postalcode
+    set @a = member_country
+
+    /* Email URL Data Strings */
+    set @a = view_email_url
+    set @a = ftaf_url
+    set @a = subscription_center_url
+    set @a = profile_center_url
+    set @a = unsub_center_url
+    set @a = double_opt_in_url
+
+    /* RMM Data Strings */
+    set @a = _RMM_Headers
+    set @a = _RMM_ReplyBodyText
+    set @a = _RMM_ReplyBodyHTML
+    set @a = _RMM_ReplySubject
+    set @a = _RMM_JobID
+    set @a = _RMM_ListID
+    set @a = _RMM_BatchID
+    set @a = _RMM_SubscriberID
+    set @a = _RMM_RecipientEmailAddress
+    set @a = _RMM_RecipientSubscriberKey
+    set @a = _replycontent
+
+    /* MobileConnect Data Strings */
+    set @a = MOBILE_NUMBER
+    set @a = SHORT_CODE
+    set @a = MSG(0)
+    set @a = MSG(0).VERB
+    set @a = MSG(0).NOUNS
+    set @a = MSG(0).NOUN(0)
+    set @a = MSG(0).NOUN(1)
+    set @a = MSG(0).NOUN(2)
+    set @a = MSG(0).NOUN(3)
+    set @a = MMS_CONTENT_URL(0)
+    set @a = MMS_CONTENT_URL(1)
+    set @a = MMS_CONTENT_URL(2)
+    set @a = MMS_CONTENT_URL(3)
+
+    /* MobileConnect Contact Strings*/
+    set @a = _CarrierID
+    set @a = _Channel
+    set @a = _City
+    set @a = _ContactID
+    set @a = _CountryCode
+    set @a = _CreatedBy
+    set @a = _CreatedDate
+    set @a = _FirstName
+    set @a = _IsHonorDST
+    set @a = _LastName
+    set @a = _MobileNumber
+    set @a = _ModifiedBy
+    set @a = _ModifiedDate
+    set @a = _Priority
+    set @a = _Source
+    set @a = _SourceObjectID
+    set @a = _State
+    set @a = _Status
+    set @a = _UTCOffset
+    set @a = _ZipCode
+
+    /* GroupConnect Data Strings*/
+    set @a = LINE_ADDRESS_ID
+    set @a = LINE_JOB_ID
+    set @a = LINE_SUBSCRIBER_ID
+    set @a = TEXT
+    set @a = VERB
+    set @a = TEXT.NOUN
+    set @a = TEXT.NOUN(1)
+    set @a = TEXT.NOUN(2)
+    set @a = TEXT.NOUN(3)
+    set @a = TEXT.NOUN(4)
+    set @a = TEXT.NOUN(5)
+    set @a = STKR.STKPKGID
+    set @a = STKR.STKID
+    set @a = STKR.STKTXT
+
+    /* Website Data Strings */
+    set @a = microsite_base_url[default]ID[/default]
+    set @a = PAGEURL
+
+    /* Email Analytics Strings */
+    set @a = linkname
+    set @a = _ImpressionRegionID
+    set @a = _ImpressionRegionName
+    set @a = AdditionalInfo_
+    set @a = __AdditionalEmailAttribute1
+    set @a = __AdditionalEmailAttribute2
+    set @a = __AdditionalEmailAttribute3
+    set @a = __AdditionalEmailAttribute4
+    set @a = __AdditionalEmailAttribute5
+    set @a = __AdditionalEmailAttribute6
+    set @a = __AdditionalEmailAttribute7
+    set @a = __AdditionalEmailAttribute8
+    set @a = __AdditionalEmailAttribute9
+
+    /* Einstein Email Data Strings */
+    set @a = ImageLink
+    set @a = ProductName
+    set @a = Description
+    set @a = RegularPrice
+    set @a = SalePrice
+    set @a = RegularPriceMain
+    set @a = SalePriceMain
+    set @a = RegularPriceFractional
+    set @a = SalePriceFractional
+    set @a = ToFloat
+    set @a = [a]LongestWordLength
+    set @a = [a]LengthNum
+    set @a = First[n]
+    set @a = Split[d]At[i]
+    set @a = [a]Replace[r]With[w]End
+    set @a = [a]UpTo[n]By[d]With[o]End
 
 ]%%
 
-===== function list http://wiki.memberlandingpages.com/010_ExactTarget/020_Content/AMPscript/AMPscript_Functions  =====
+<!-- SYSTEM STRINGS - INLINE -->
+
+    <!-- Email Date Strings -->
+    %%xtmonth%%
+    %%xtmonthnumeric%%
+    %%xtday%%
+    %%xtdayofweek%%
+    %%xtyear%%
+    %%xtshortdate%%
+    %%xtlongdate%%
+
+    <!-- Email Data Strings -->
+    %%emailaddr%%
+    %%firstname_%%
+    %%firstname%%
+    %%lastname_%%
+    %%lastname%%
+    %%subscriberid%%
+    %%_subscriberkey%%
+    %%listid%%
+    %%list_%%
+    %%listsubid%%
+    %%_messagetypepreference%%
+
+    <!-- Sender Data Strings -->
+    %%replyname%%
+    %%replyemailaddress%%
+    %%memberid%%
+    %%member_busname%%
+    %%member_addr%%
+    %%member_city%%
+    %%member_state%%
+    %%member_postalcode%%
+    %%member_country%%
+
+    <!-- Email URL Data Strings -->
+    %%view_email_url%%
+    %%ftaf_url%%
+    %%subscription_center_url%%
+    %%profile_center_url%%
+    %%unsub_center_url%%
+    %%double_opt_in_url%%
+
+    <!-- RMM Data Strings -->
+    %%_RMM_Headers%%
+    %%_RMM_ReplyBodyText%%
+    %%_RMM_ReplyBodyHTML%%
+    %%_RMM_ReplySubject%%
+    %%_RMM_JobID%%
+    %%_RMM_ListID%%
+    %%_RMM_BatchID%%
+    %%_RMM_SubscriberID%%
+    %%_RMM_RecipientEmailAddress%%
+    %%_RMM_RecipientSubscriberKey%%
+    %%_replycontent%%
+
+    <!-- MobileConnect Data Strings -->
+    %%MOBILE_NUMBER%%
+    %%SHORT_CODE%%
+    %%MSG(0)%%
+    %%MSG(0).VERB%%
+    %%MSG(0).NOUNS%%
+    %%MSG(0).NOUN(0)%%
+    %%MSG(0).NOUN(1)%%
+    %%MSG(0).NOUN(2)%%
+    %%MSG(0).NOUN(3)%%
+    %%MMS_CONTENT_URL(1)%%
+    %%MMS_CONTENT_URL(2)%%
+    %%MMS_CONTENT_URL(3)%%
+
+    <!-- MobileConnect Contact Strings -->
+    %%_CarrierID%%
+    %%_Channel%%
+    %%_City%%
+    %%_ContactID%%
+    %%_CountryCode%%
+    %%_CreatedBy%%
+    %%_CreatedDate%%
+    %%_FirstName%%
+    %%_IsHonorDST%%
+    %%_LastName%%
+    %%_MobileNumber%%
+    %%_ModifiedBy%%
+    %%_ModifiedDate%%
+    %%_Priority%%
+    %%_Source%%
+    %%_SourceObjectID%%
+    %%_State%%
+    %%_Status%%
+    %%_UTCOffset%%
+    %%_ZipCode%%
+
+    <!-- GroupConnect Data Strings -->
+    %%LINE_ADDRESS_ID%%
+    %%LINE_JOB_ID%%
+    %%LINE_SUBSCRIBER_ID%%
+    %%TEXT%%
+    %%VERB%%
+    %%TEXT.NOUN%%
+    %%TEXT.NOUN(1)%%
+    %%STKR.STKPKGID%%
+    %%STKR.STKID%%
+    %%STKR.STKTXT%%
+
+    <!-- Website Data Strings -->
+    %%microsite_base_url[default]ID[/default]%%
+    %%PAGEURL%%
+
+    <!-- Email Analytics Strings -->
+    %%linkname%%
+    %%_ImpressionRegionID%%
+    %%_ImpressionRegionName%%
+    %%AdditionalInfo_%%
+    %%__AdditionalEmailAttribute1%%
+    %%__AdditionalEmailAttribute2%%
+    %%__AdditionalEmailAttribute3%%
+    %%__AdditionalEmailAttribute4%%
+    %%__AdditionalEmailAttribute5%%
+    %%__AdditionalEmailAttribute6%%
+    %%__AdditionalEmailAttribute7%%
+    %%__AdditionalEmailAttribute8%%
+    %%__AdditionalEmailAttribute9%%
+
+    <!-- Einstein Email Data Strings -->
+    %%ImageLink%%
+    %%ProductName%%
+    %%Description%%
+    %%RegularPrice%%
+    %%SalePrice%%
+    %%RegularPriceMain%%
+    %%SalePriceMain%%
+    %%RegularPriceFractional%%
+    %%SalePriceFractional%%
+    %%ToFloat%%
+    %%[a]LongestWordLength%%
+    %%[a]LengthNum%%
+    %%First[n]%%
+    %%Split[d]At[i]%%
+    %%[a]Replace[r]With[w]End%%
+    %%[a]UpTo[n]By[d]With[o]End%%
+
 %%[
-Add(N1,N2)
-AddMscrmListMember(S1,S2)
-AddObjectArrayItem(O1,S1,S2)
-AttachFile(S1,S2,S3,B1,S4,S5,N1)
-AttributeValue(S1)
-AuthenticatedEmployeeID()
-AuthenticatedEmployeeNotificationAddress()
-AuthenticatedEmployeeUserName()
-AuthenticatedEnterpriseID()
-AuthenticatedMemberID()
-AuthenticatedMemberName()
-BarCodeURL(S1,S2,N1,N2,S3)
-Base64Decode(S1,S2)
-Base64Encode(S1)
-BeginImpressionRegion(S1)
-BuildOptionList(S1,S2,S3)
-BuildRowSetFromString(S1,S2)
-BuildRowSetFromXML(S1,S2,B1)
-Char(S1,S2)
-ClaimRow(S1,S2,S3,S4,...Sn,Sn+1)
-ClaimRowValue(S1,S2,S3,S4,S5,S6,...Sn, Sn+1)
-Concat(S1,S2,...Sn)
-ContentArea(I1,S1,B1,S2,N1)
-ContentAreaByName(S1,S2,B1,S3,N1)
-CreateMscrmRecord(S1,S2,S3a,S3b)
-CreateObject(S1)
-CreateSalesforceObject(S1,I1,S2a,S2b,...Sna,Snb)
-DateAdd(D1, I1, S1)
-DateDiff(D1, D2, S1)
-DateParse(S1,B1)
-DatePart(D1, S1)
-DecryptSymmetric(S1, S2, S3, S4, S5, S6, S7, S8)
-DeleteData(S1, S2, S3)
-DeleteDE(S1, S2, S3)
-DescribeMscrmEntities()
-DescribeMscrmEntityAttributes(S1)
-DirectTwitterMessage(S1, S2, S3, S4)
-Divide(N1, N2)
-Domain(S1)
-Empty (V1)
-EncryptSymmetric(S1, S2, S3, S4, S5, S6, S7, S8)
-EndImpressionRegion(B1)
-ExecuteFilter(S1,S2,S3...)
-ExecuteFilterOrderedRows(S1,N1,S2,S3,S4...)
-Field(S1,S2)
-Format (V1, S1)
-GetPortfolioItem(S1)
-GetPublishedSocialContent(S1)
-GetSocialPublishURL(N1,S1,S2,S3...Sn)
-GetSocialPublishURLByName(S1,S2,S3,S4,S5...Sn)
-GUID()
-HTTPGet(S1,B1,N1,S2)
-HTTPRequestHeader(S1)
-IIf(E1,S1,S2)
-Image(S1,S2)
-IndexOf(V1, S1)
-InsertData(S1, S2, S3)
-InsertDE(S1, S2, S3)
-InvokeCreate(O1,S1,N1,O2)
-InvokeDelete(O1,S1,N1,O2)
-InvokeExecute
-InvokePerform(O1,S1,S2)
-InvokeRetrieve(P1,P2,P3)
-InvokeUpdate(P1,P2,P3,P4)
-IsEmailAddress(S1)
-IsNull(P1)
-IsNullDefault(S1, S2)
-IsPhoneNumber(P1)
-Length(V1)
-LiveContentMicrositeURL(S1, S2)
-LocalDateToSystemDate(S1)
-LongSFID(S1)
-Lookup(S1, S2, S3, S4)
-LookupOrderedRows(S1, N1, S2, S3, S4)
-LookupOrderedRowsCS(S1, N1, S2, S3, S4)
-LookupRows(S1, S2, S3)
-LookupRowsCS(S1, S2, S3)
-Lowercase(S1)
-MD5(S1,S2)
-Mod(N1, N2)
-Multiply(N1, N2)
-Now(P1)
-Output(C1)
-OutputLine(C1)
-ProperCase(S1)
-QueryParameter(S1)
-RaiseError(S1,B1,S2,S3,B2)
-Random(I1, I2)
-Redirect(S1)
-RedirectTo(S1)
-RegExMatch(S1,S2,S3,S4...Sn)
-Replace(V1, S1, S2)
-ReplaceList(S1, S2, S3,...Sn)
-RequestParameter(P1)
-RetrieveMscrmRecords(S1,S2,S3a,S3b,S3c)
-RetrieveMscrmRecordsFetchXML(S1)
-RetrieveSalesforceJobSources(P1)
-RetrieveSalesforceObjects(S1,S2,S3a,S3b,S3c,...Sna,Snb,Snc)
-Row(RS, I1)
-RowCount(RS)
-SetObjectProperty(O1,S1,S2)
-SetSmsConversationNextKeyword(S1,S2,S3)
-SetStateMscrmRecord(S1,S2,S3,S4)
-SHA256(S1,S2)
-SHA512(S1,S2)
-StringToDate(S1,S2)
-StringToHex(S1,S2)
-Substring(S1, I1, I2)
-Subtract(N1, N2)
-SystemDateToLocalDate(S1)
-TransformXML(S1,S2)
-TreatAsContent(S1)
-TreatAsContentArea(S1,S2,S3)
-Trim(S1)
-UpdateData(S1, N1, S2, S3, S4, S5)
-UpdateDE(S1, N1, S2, S3, S4, S5)
-UpdateMscrmRecords(S1,S2,S3a,S3b...SNa,SNb)
-UpdateSingleSalesforceObject(S1,S2,S3a,S3b,...Sna,Snb)
-UpdateTwitterStatus(S1, S2, S3)
-UpdateTwitterStatusByJob(S1, S2, S3)
-Uppercase (S1)
-UpsertContacts(S1,S2,S3,S4,S5...)
-UpsertData(S1, N1, S2, S3, S4, S5)
-UpsertDE(S1, N1, S2, S3, S4, S5)
-UpsertMscrmRecord(S1,S2,S3,S4,S5a,S5b,S6a,S6b)
-URLEncode(S1,B1)
-V(S1)
-WAT (S1, S2)
-WATP (S1, S2)
-WrapLongURL(S1)
+
+    /* FUNCTIONS - BLOCK */
+
+    set @a = Add()
+    set @a = AddMSCRMListMember()
+    set @a = AddObjectArrayItem()
+    set @a = AttachFile()
+    set @a = AttributeValue()
+    set @a = AuthenticatedEmployeeID()
+    set @a = AuthenticatedEmployeeNotificationAddress()
+    set @a = AuthenticatedEmployeeUserName()
+    set @a = AuthenticatedEnterpriseID()
+    set @a = AuthenticatedMemberID()
+    set @a = AuthenticatedMemberName()
+    set @a = BarCodeURL()
+    set @a = Base64Decode()
+    set @a = Base64Encode()
+    set @a = BeginImpressionRegion()
+    set @a = BuildOptionList()
+    set @a = BuildRowSetFromString()
+    set @a = BuildRowSetFromXML()
+    set @a = Char()
+    set @a = ClaimRow()
+    set @a = ClaimRowValue()
+    set @a = CloudPagesURL()
+    set @a = Concat()
+    set @a = ContentArea()
+    set @a = ContentAreaByName()
+    set @a = ContentBlockbyId()
+    set @a = ContentBlockbyKey()
+    set @a = ContentBlockbyName()
+    set @a = ContentImagebyID()
+    set @a = ContentImagebyKey()
+    set @a = CreateMSCRMRecord()
+    set @a = CreateObject()
+    set @a = CreateSalesforceObject()
+    set @a = CreateSmsConversation()
+    set @a = DataExtensionRowCount()
+    set @a = DateAdd()
+    set @a = DateDiff()
+    set @a = DateParse()
+    set @a = DatePart()
+    set @a = DecryptSymmetric()
+    set @a = DeleteData()
+    set @a = DeleteDE()
+    set @a = DescribeMSCRMEntities()
+    set @a = DescribeMSCRMEntityAttributes()
+    set @a = Divide()
+    set @a = Domain()
+    set @a = Empty()
+    set @a = EncryptSymmetric()
+    set @a = EndImpressionRegion()
+    set @a = EndSmsConversation()
+    set @a = ExecuteFilter()
+    set @a = ExecuteFilterOrderedRows()
+    set @a = Field()
+    set @a = Format()
+    set @a = FormatCurrency()
+    set @a = FormatDate()
+    set @a = FormatNumber()
+    set @a = GetPortfolioItem()
+    set @a = GetPublishedSocialContent()
+    set @a = GetSocialPublishURL()
+    set @a = GetSocialPublishURLByName()
+    set @a = GetValue()
+    set @a = GUID()
+    set @a = HTTPGet()
+    set @a = HTTPPost()
+    set @a = HTTPPost2()
+    set @a = HTTPRequestHeader()
+    set @a = IIf()
+    set @a = Image()
+    set @a = IndexOf()
+    set @a = InsertData()
+    set @a = InsertDE()
+    set @a = InvokeCreate()
+    set @a = InvokeDelete()
+    set @a = InvokeExecute()
+    set @a = InvokePerform()
+    set @a = InvokeRetrieve()
+    set @a = InvokeUpdate()
+    set @a = IsCHTMLBrowser()
+    set @a = IsEmailAddress()
+    set @a = IsNull()
+    set @a = IsNullDefault()
+    set @a = IsPhoneNumber()
+    set @a = Length()
+    set @a = LiveContentMicrositeURL()
+    set @a = LocalDateToSystemDate()
+    set @a = LongSFID()
+    set @a = Lookup()
+    set @a = LookupOrderedRows()
+    set @a = LookupOrderedRowsCS()
+    set @a = LookupRows()
+    set @a = LookupRowsCS()
+    set @a = Lowercase()
+    set @a = MD5()
+    set @a = MicrositeURL()
+    set @a = Mod()
+    set @a = Multiply()
+    set @a = Now()
+    set @a = Output()
+    set @a = OutputLine()
+    set @a = ProperCase()
+    set @a = QueryParameter()
+    set @a = RaiseError()
+    set @a = Random()
+    set @a = RatingStars()
+    set @a = Redirect()
+    set @a = RedirectTo()
+    set @a = RegExMatch()
+    set @a = Replace()
+    set @a = ReplaceList()
+    set @a = RequestParameter()
+    set @a = RetrieveMSCRMRecords()
+    set @a = RetrieveMSCRMRecordsFetchXML()
+    set @a = RetrieveSalesforceJobSources()
+    set @a = RetrieveSalesforceObjects()
+    set @a = Row()
+    set @a = RowCount()
+    set @a = SetObjectProperty()
+    set @a = SetSmsConversationNextKeyword()
+    set @a = SetStateMSCRMRecord()
+    set @a = SetValue()
+    set @a = SHA1()
+    set @a = SHA256()
+    set @a = SHA512()
+    set @a = StringToDate()
+    set @a = StringToHex()
+    set @a = Substring()
+    set @a = Subtract()
+    set @a = SystemDateToLocalDate()
+    set @a = TransformXML()
+    set @a = TreatAsContent()
+    set @a = TreatAsContentArea()
+    set @a = Trim()
+    set @a = UpdateData()
+    set @a = UpdateDE()
+    set @a = UpdateMSCRMRecords()
+    set @a = UpdateSingleSalesforceObject()
+    set @a = Uppercase()
+    set @a = UpsertContact()
+    set @a = UpsertData()
+    set @a = UpsertDE()
+    set @a = UpsertMSCRMRecord()
+    set @a = URLEncode()
+    set @a = V()
+    set @a = WAT()
+    set @a = WATP()
+    set @a = WrapLongURL()
+
 ]%%
 
+<!-- FUNCTIONS - INLINE -->
+
+    %%=Add()=%%
+    %%=AddMSCRMListMember()=%%
+    %%=AddObjectArrayItem()=%%
+    %%=AttachFile()=%%
+    %%=AttributeValue()=%%
+    %%=AuthenticatedEmployeeID()=%%
+    %%=AuthenticatedEmployeeNotificationAddress()=%%
+    %%=AuthenticatedEmployeeUserName()=%%
+    %%=AuthenticatedEnterpriseID()=%%
+    %%=AuthenticatedMemberID()=%%
+    %%=AuthenticatedMemberName()=%%
+    %%=BarCodeURL()=%%
+    %%=Base64Decode()=%%
+    %%=Base64Encode()=%%
+    %%=BeginImpressionRegion()=%%
+    %%=BuildOptionList()=%%
+    %%=BuildRowSetFromString()=%%
+    %%=BuildRowSetFromXML()=%%
+    %%=Char()=%%
+    %%=ClaimRow()=%%
+    %%=ClaimRowValue()=%%
+    %%=CloudPagesURL()=%%
+    %%=Concat()=%%
+    %%=ContentArea()=%%
+    %%=ContentAreaByName()=%%
+    %%=ContentBlockbyId()=%%
+    %%=ContentBlockbyKey()=%%
+    %%=ContentBlockbyName()=%%
+    %%=ContentImagebyID()=%%
+    %%=ContentImagebyKey()=%%
+    %%=CreateMSCRMRecord()=%%
+    %%=CreateObject()=%%
+    %%=CreateSalesforceObject()=%%
+    %%=CreateSmsConversation()=%%
+    %%=DataExtensionRowCount()=%%
+    %%=DateAdd()=%%
+    %%=DateDiff()=%%
+    %%=DateParse()=%%
+    %%=DatePart()=%%
+    %%=DecryptSymmetric()=%%
+    %%=DeleteData()=%%
+    %%=DeleteDE()=%%
+    %%=DescribeMSCRMEntities()=%%
+    %%=DescribeMSCRMEntityAttributes()=%%
+    %%=Divide()=%%
+    %%=Domain()=%%
+    %%=Empty()=%%
+    %%=EncryptSymmetric()=%%
+    %%=EndImpressionRegion()=%%
+    %%=EndSmsConversation()=%%
+    %%=ExecuteFilter()=%%
+    %%=ExecuteFilterOrderedRows()=%%
+    %%=Field()=%%
+    %%=Format()=%%
+    %%=FormatCurrency()=%%
+    %%=FormatDate()=%%
+    %%=FormatNumber()=%%
+    %%=GetPortfolioItem()=%%
+    %%=GetPublishedSocialContent()=%%
+    %%=GetSocialPublishURL()=%%
+    %%=GetSocialPublishURLByName()=%%
+    %%=GetValue()=%%
+    %%=GUID()=%%
+    %%=HTTPGet()=%%
+    %%=HTTPPost()=%%
+    %%=HTTPPost2()=%%
+    %%=HTTPRequestHeader()=%%
+    %%=IIf()=%%
+    %%=Image()=%%
+    %%=IndexOf()=%%
+    %%=InsertData()=%%
+    %%=InsertDE()=%%
+    %%=InvokeCreate()=%%
+    %%=InvokeDelete()=%%
+    %%=InvokeExecute()=%%
+    %%=InvokePerform()=%%
+    %%=InvokeRetrieve()=%%
+    %%=InvokeUpdate()=%%
+    %%=IsCHTMLBrowser()=%%
+    %%=IsEmailAddress()=%%
+    %%=IsNull()=%%
+    %%=IsNullDefault()=%%
+    %%=IsPhoneNumber()=%%
+    %%=Length()=%%
+    %%=LiveContentMicrositeURL()=%%
+    %%=LocalDateToSystemDate()=%%
+    %%=LongSFID()=%%
+    %%=Lookup()=%%
+    %%=LookupOrderedRows()=%%
+    %%=LookupOrderedRowsCS()=%%
+    %%=LookupRows()=%%
+    %%=LookupRowsCS()=%%
+    %%=Lowercase()=%%
+    %%=MD5()=%%
+    %%=MicrositeURL()=%%
+    %%=Mod()=%%
+    %%=Multiply()=%%
+    %%=Now()=%%
+    %%=Output()=%%
+    %%=OutputLine()=%%
+    %%=ProperCase()=%%
+    %%=QueryParameter()=%%
+    %%=RaiseError()=%%
+    %%=Random()=%%
+    %%=RatingStars()=%%
+    %%=Redirect()=%%
+    %%=RedirectTo()=%%
+    %%=RegExMatch()=%%
+    %%=Replace()=%%
+    %%=ReplaceList()=%%
+    %%=RequestParameter()=%%
+    %%=RetrieveMSCRMRecords()=%%
+    %%=RetrieveMSCRMRecordsFetchXML()=%%
+    %%=RetrieveSalesforceJobSources()=%%
+    %%=RetrieveSalesforceObjects()=%%
+    %%=Row()=%%
+    %%=RowCount()=%%
+    %%=SetObjectProperty()=%%
+    %%=SetSmsConversationNextKeyword()=%%
+    %%=SetStateMSCRMRecord()=%%
+    %%=SetValue()=%%
+    %%=SHA1()=%%
+    %%=SHA256()=%%
+    %%=SHA512()=%%
+    %%=StringToDate()=%%
+    %%=StringToHex()=%%
+    %%=Substring()=%%
+    %%=Subtract()=%%
+    %%=SystemDateToLocalDate()=%%
+    %%=TransformXML()=%%
+    %%=TreatAsContent()=%%
+    %%=TreatAsContentArea()=%%
+    %%=Trim()=%%
+    %%=UpdateData()=%%
+    %%=UpdateDE()=%%
+    %%=UpdateMSCRMRecords()=%%
+    %%=UpdateSingleSalesforceObject()=%%
+    %%=Uppercase()=%%
+    %%=UpsertContact()=%%
+    %%=UpsertData()=%%
+    %%=UpsertDE()=%%
+    %%=UpsertMSCRMRecord()=%%
+    %%=URLEncode()=%%
+    %%=V()=%%
+    %%=WAT()=%%
+    %%=WATP()=%%
+    %%=WrapLongURL()=%%
+
+
+</body>
+</html>
